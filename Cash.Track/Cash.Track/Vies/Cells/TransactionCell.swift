@@ -45,7 +45,6 @@ public class TransactionCell : UICollectionViewCell {
         NameLabel.text = transaction.Name
         let amount = transaction.Amount
         AmountLabel.text = "\(amount)"
-        AmountLabel.textColor = UIHelpers.getPosNegColorFor(total: amount)
     }
     
     private func addSubviews() {
