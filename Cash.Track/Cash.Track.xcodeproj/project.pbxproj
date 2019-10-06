@@ -1,0 +1,655 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FC49ACDF234A3988006560D7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49ACDE234A3988006560D7 /* Extensions.swift */; };
+		FC49ACE1234A54AA006560D7 /* TransactionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */; };
+		FC86C4FF22D27B5000932306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C4FE22D27B5000932306 /* AppDelegate.swift */; };
+		FC86C50422D27B5000932306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC86C50222D27B5000932306 /* Main.storyboard */; };
+		FC86C50622D27B5900932306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC86C50522D27B5900932306 /* Assets.xcassets */; };
+		FC86C50922D27B5900932306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC86C50722D27B5900932306 /* LaunchScreen.storyboard */; };
+		FC86C51422D27B5900932306 /* Cash_TrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C51322D27B5900932306 /* Cash_TrackTests.swift */; };
+		FC86C51F22D27B5900932306 /* Cash_TrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C51E22D27B5900932306 /* Cash_TrackUITests.swift */; };
+		FC86C53022D27BFD00932306 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C52F22D27BFD00932306 /* Transaction.swift */; };
+		FC86C53422D27C5C00932306 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C53322D27C5C00932306 /* TransactionCell.swift */; };
+		FCB67BB622D9703B0096515B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB67BB522D9703B0096515B /* DataStore.swift */; };
+		FCB67BBA22D97BC20096515B /* UIViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB67BB922D97BC20096515B /* UIViewControllerBase.swift */; };
+		FCB67BBF22D99C8E0096515B /* UIViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB67BBE22D99C8E0096515B /* UIViewBase.swift */; };
+		FCD552AC22DBF866001582CF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD552AB22DBF866001582CF /* HomeViewController.swift */; };
+		FCD552AE22DC0CCE001582CF /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD552AD22DC0CCE001582CF /* HomePageView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC86C51022D27B5900932306 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC86C4F322D27B5000932306 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC86C4FA22D27B5000932306;
+			remoteInfo = Cash.Track;
+		};
+		FC86C51B22D27B5900932306 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC86C4F322D27B5000932306 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC86C4FA22D27B5000932306;
+			remoteInfo = Cash.Track;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FC49ACDE234A3988006560D7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeader.swift; sourceTree = "<group>"; };
+		FC86C4FB22D27B5000932306 /* Cash.Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cash.Track.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC86C4FE22D27B5000932306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FC86C50322D27B5000932306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FC86C50522D27B5900932306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC86C50822D27B5900932306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FC86C50A22D27B5900932306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC86C50F22D27B5900932306 /* Cash.TrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Cash.TrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC86C51322D27B5900932306 /* Cash_TrackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cash_TrackTests.swift; sourceTree = "<group>"; };
+		FC86C51522D27B5900932306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC86C51A22D27B5900932306 /* Cash.TrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Cash.TrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC86C51E22D27B5900932306 /* Cash_TrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cash_TrackUITests.swift; sourceTree = "<group>"; };
+		FC86C52022D27B5900932306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC86C52F22D27BFD00932306 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		FC86C53322D27C5C00932306 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		FCB67BB522D9703B0096515B /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		FCB67BB922D97BC20096515B /* UIViewControllerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerBase.swift; sourceTree = "<group>"; };
+		FCB67BBE22D99C8E0096515B /* UIViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBase.swift; sourceTree = "<group>"; };
+		FCD552AB22DBF866001582CF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FCD552AD22DC0CCE001582CF /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC86C4F822D27B5000932306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC86C50C22D27B5900932306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC86C51722D27B5900932306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC1ACF32234A75A6000B8289 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FC86C53322D27C5C00932306 /* TransactionCell.swift */,
+				FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FC49ACE2234A726B006560D7 /* Vies */ = {
+			isa = PBXGroup;
+			children = (
+				FCD552AB22DBF866001582CF /* HomeViewController.swift */,
+				FCD552AD22DC0CCE001582CF /* HomePageView.swift */,
+				FC1ACF32234A75A6000B8289 /* Cells */,
+			);
+			path = Vies;
+			sourceTree = "<group>";
+		};
+		FC86C4F222D27B5000932306 = {
+			isa = PBXGroup;
+			children = (
+				FC86C4FD22D27B5000932306 /* Cash.Track */,
+				FC86C51222D27B5900932306 /* Cash.TrackTests */,
+				FC86C51D22D27B5900932306 /* Cash.TrackUITests */,
+				FC86C4FC22D27B5000932306 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC86C4FC22D27B5000932306 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC86C4FB22D27B5000932306 /* Cash.Track.app */,
+				FC86C50F22D27B5900932306 /* Cash.TrackTests.xctest */,
+				FC86C51A22D27B5900932306 /* Cash.TrackUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC86C4FD22D27B5000932306 /* Cash.Track */ = {
+			isa = PBXGroup;
+			children = (
+				FCDDB425234A743B004097D9 /* New Group */,
+				FC49ACE2234A726B006560D7 /* Vies */,
+				FCD5B77622DB014400ADD85B /* Common */,
+				FC86C4FE22D27B5000932306 /* AppDelegate.swift */,
+				FC86C50222D27B5000932306 /* Main.storyboard */,
+				FC86C50722D27B5900932306 /* LaunchScreen.storyboard */,
+				FC86C50522D27B5900932306 /* Assets.xcassets */,
+				FC86C50A22D27B5900932306 /* Info.plist */,
+			);
+			path = Cash.Track;
+			sourceTree = "<group>";
+		};
+		FC86C51222D27B5900932306 /* Cash.TrackTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC86C51322D27B5900932306 /* Cash_TrackTests.swift */,
+				FC86C51522D27B5900932306 /* Info.plist */,
+			);
+			path = Cash.TrackTests;
+			sourceTree = "<group>";
+		};
+		FC86C51D22D27B5900932306 /* Cash.TrackUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FC86C51E22D27B5900932306 /* Cash_TrackUITests.swift */,
+				FC86C52022D27B5900932306 /* Info.plist */,
+			);
+			path = Cash.TrackUITests;
+			sourceTree = "<group>";
+		};
+		FCD5B77622DB014400ADD85B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FC49ACDE234A3988006560D7 /* Extensions.swift */,
+				FCB67BB922D97BC20096515B /* UIViewControllerBase.swift */,
+				FCB67BBE22D99C8E0096515B /* UIViewBase.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FCDDB425234A743B004097D9 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				FCB67BB522D9703B0096515B /* DataStore.swift */,
+				FC86C52F22D27BFD00932306 /* Transaction.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FC86C4FA22D27B5000932306 /* Cash.Track */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC86C52322D27B5900932306 /* Build configuration list for PBXNativeTarget "Cash.Track" */;
+			buildPhases = (
+				FC86C4F722D27B5000932306 /* Sources */,
+				FC86C4F822D27B5000932306 /* Frameworks */,
+				FC86C4F922D27B5000932306 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cash.Track;
+			productName = Cash.Track;
+			productReference = FC86C4FB22D27B5000932306 /* Cash.Track.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC86C50E22D27B5900932306 /* Cash.TrackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC86C52622D27B5900932306 /* Build configuration list for PBXNativeTarget "Cash.TrackTests" */;
+			buildPhases = (
+				FC86C50B22D27B5900932306 /* Sources */,
+				FC86C50C22D27B5900932306 /* Frameworks */,
+				FC86C50D22D27B5900932306 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC86C51122D27B5900932306 /* PBXTargetDependency */,
+			);
+			name = Cash.TrackTests;
+			productName = Cash.TrackTests;
+			productReference = FC86C50F22D27B5900932306 /* Cash.TrackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FC86C51922D27B5900932306 /* Cash.TrackUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC86C52922D27B5900932306 /* Build configuration list for PBXNativeTarget "Cash.TrackUITests" */;
+			buildPhases = (
+				FC86C51622D27B5900932306 /* Sources */,
+				FC86C51722D27B5900932306 /* Frameworks */,
+				FC86C51822D27B5900932306 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC86C51C22D27B5900932306 /* PBXTargetDependency */,
+			);
+			name = Cash.TrackUITests;
+			productName = Cash.TrackUITests;
+			productReference = FC86C51A22D27B5900932306 /* Cash.TrackUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FC86C4F322D27B5000932306 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Big Ahi Software";
+				TargetAttributes = {
+					FC86C4FA22D27B5000932306 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					FC86C50E22D27B5900932306 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = FC86C4FA22D27B5000932306;
+					};
+					FC86C51922D27B5900932306 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = FC86C4FA22D27B5000932306;
+					};
+				};
+			};
+			buildConfigurationList = FC86C4F622D27B5000932306 /* Build configuration list for PBXProject "Cash.Track" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FC86C4F222D27B5000932306;
+			productRefGroup = FC86C4FC22D27B5000932306 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC86C4FA22D27B5000932306 /* Cash.Track */,
+				FC86C50E22D27B5900932306 /* Cash.TrackTests */,
+				FC86C51922D27B5900932306 /* Cash.TrackUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FC86C4F922D27B5000932306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC86C50922D27B5900932306 /* LaunchScreen.storyboard in Resources */,
+				FC86C50622D27B5900932306 /* Assets.xcassets in Resources */,
+				FC86C50422D27B5000932306 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC86C50D22D27B5900932306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC86C51822D27B5900932306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FC86C4F722D27B5000932306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCB67BBF22D99C8E0096515B /* UIViewBase.swift in Sources */,
+				FC86C4FF22D27B5000932306 /* AppDelegate.swift in Sources */,
+				FC86C53422D27C5C00932306 /* TransactionCell.swift in Sources */,
+				FCD552AE22DC0CCE001582CF /* HomePageView.swift in Sources */,
+				FC49ACE1234A54AA006560D7 /* TransactionHeader.swift in Sources */,
+				FCB67BBA22D97BC20096515B /* UIViewControllerBase.swift in Sources */,
+				FCB67BB622D9703B0096515B /* DataStore.swift in Sources */,
+				FC86C53022D27BFD00932306 /* Transaction.swift in Sources */,
+				FC49ACDF234A3988006560D7 /* Extensions.swift in Sources */,
+				FCD552AC22DBF866001582CF /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC86C50B22D27B5900932306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC86C51422D27B5900932306 /* Cash_TrackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC86C51622D27B5900932306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC86C51F22D27B5900932306 /* Cash_TrackUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC86C51122D27B5900932306 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC86C4FA22D27B5000932306 /* Cash.Track */;
+			targetProxy = FC86C51022D27B5900932306 /* PBXContainerItemProxy */;
+		};
+		FC86C51C22D27B5900932306 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC86C4FA22D27B5000932306 /* Cash.Track */;
+			targetProxy = FC86C51B22D27B5900932306 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FC86C50222D27B5000932306 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC86C50322D27B5000932306 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FC86C50722D27B5900932306 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC86C50822D27B5900932306 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FC86C52122D27B5900932306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FC86C52222D27B5900932306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC86C52422D27B5900932306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JXS7RJNK43;
+				INFOPLIST_FILE = Cash.Track/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Big-Ahi-Software.Cash-Track";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FC86C52522D27B5900932306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JXS7RJNK43;
+				INFOPLIST_FILE = Cash.Track/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Big-Ahi-Software.Cash-Track";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FC86C52722D27B5900932306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JXS7RJNK43;
+				INFOPLIST_FILE = Cash.TrackTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Big-Ahi-Software.Cash-TrackTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cash.Track.app/Cash.Track";
+			};
+			name = Debug;
+		};
+		FC86C52822D27B5900932306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JXS7RJNK43;
+				INFOPLIST_FILE = Cash.TrackTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Big-Ahi-Software.Cash-TrackTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cash.Track.app/Cash.Track";
+			};
+			name = Release;
+		};
+		FC86C52A22D27B5900932306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JXS7RJNK43;
+				INFOPLIST_FILE = Cash.TrackUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Big-Ahi-Software.Cash-TrackUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Cash.Track;
+			};
+			name = Debug;
+		};
+		FC86C52B22D27B5900932306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JXS7RJNK43;
+				INFOPLIST_FILE = Cash.TrackUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Big-Ahi-Software.Cash-TrackUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Cash.Track;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FC86C4F622D27B5000932306 /* Build configuration list for PBXProject "Cash.Track" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC86C52122D27B5900932306 /* Debug */,
+				FC86C52222D27B5900932306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC86C52322D27B5900932306 /* Build configuration list for PBXNativeTarget "Cash.Track" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC86C52422D27B5900932306 /* Debug */,
+				FC86C52522D27B5900932306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC86C52622D27B5900932306 /* Build configuration list for PBXNativeTarget "Cash.TrackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC86C52722D27B5900932306 /* Debug */,
+				FC86C52822D27B5900932306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC86C52922D27B5900932306 /* Build configuration list for PBXNativeTarget "Cash.TrackUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC86C52A22D27B5900932306 /* Debug */,
+				FC86C52B22D27B5900932306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FC86C4F322D27B5000932306 /* Project object */;
+}
