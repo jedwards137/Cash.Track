@@ -33,7 +33,7 @@ public class TransactionCell : UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .white
+        self.backgroundColor = .lightGray
         self.clipsToBounds = true
         self.layer.cornerRadius = 8
         
@@ -45,6 +45,14 @@ public class TransactionCell : UICollectionViewCell {
         NameLabel.text = transaction.Name
         let amount = transaction.Amount
         AmountLabel.text = "\(amount)"
+        
+        let amountIsPositive = amount > 0
+        if amountIsPositive {
+            self.backgroundColor = UIColor(r: 129, g: 232, b: 141)
+        }
+        else {
+            self.backgroundColor = UIColor(r: 229, g: 126, b: 100)
+        }
     }
     
     private func addSubviews() {

@@ -51,7 +51,7 @@ class HomePageView : UIViewBase {
     
     override init() {
         super.init()
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .white
     }
     
     internal override func addSubviews() {
