@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC05B595234BBC1500F15A49 /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B594234BBC1500F15A49 /* NewTransactionViewController.swift */; };
+		FC05B597234BBCB900F15A49 /* NewTransactionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B596234BBCB900F15A49 /* NewTransactionPageView.swift */; };
 		FC49ACDF234A3988006560D7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49ACDE234A3988006560D7 /* Extensions.swift */; };
 		FC49ACE1234A54AA006560D7 /* TransactionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */; };
 		FC86C4FF22D27B5000932306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C4FE22D27B5000932306 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC05B594234BBC1500F15A49 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
+		FC05B596234BBCB900F15A49 /* NewTransactionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionPageView.swift; sourceTree = "<group>"; };
 		FC49ACDE234A3988006560D7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeader.swift; sourceTree = "<group>"; };
 		FC86C4FB22D27B5000932306 /* Cash.Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cash.Track.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,8 @@
 			children = (
 				FCD552AB22DBF866001582CF /* HomeViewController.swift */,
 				FCD552AD22DC0CCE001582CF /* HomePageView.swift */,
+				FC05B594234BBC1500F15A49 /* NewTransactionViewController.swift */,
+				FC05B596234BBCB900F15A49 /* NewTransactionPageView.swift */,
 				FC1ACF32234A75A6000B8289 /* Cells */,
 			);
 			path = Vies;
@@ -314,6 +320,8 @@
 			files = (
 				FCB67BBF22D99C8E0096515B /* UIViewBase.swift in Sources */,
 				FC86C4FF22D27B5000932306 /* AppDelegate.swift in Sources */,
+				FC05B595234BBC1500F15A49 /* NewTransactionViewController.swift in Sources */,
+				FC05B597234BBCB900F15A49 /* NewTransactionPageView.swift in Sources */,
 				FC86C53422D27C5C00932306 /* TransactionCell.swift in Sources */,
 				FCD552AE22DC0CCE001582CF /* HomePageView.swift in Sources */,
 				FC49ACE1234A54AA006560D7 /* TransactionHeader.swift in Sources */,
