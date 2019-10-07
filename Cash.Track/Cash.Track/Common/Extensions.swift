@@ -10,9 +10,17 @@ import Foundation
 import UIKit
 
 extension Date {
-    func noTime() -> Date! {
-        let components = Calendar.current.dateComponents([.day, .month, .year], from: self)
-        return Calendar.current.date(from: components)
+    func compareByYearAndDay(_ compareDate: Date) -> Bool {
+        let calendar = Calendar.current
+        
+        let selfComponents = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year], from: self)
+        let compareToComponents = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year], from: compareDate)
+        
+        let yearsAreEqual = selfComponents.year == compareToComponents.year
+        if !yearsAreEqual { return false }
+        let daysAreEqual = selfComponents.day == compareToComponents.day
+        if !daysAreEqual { return false }
+        return true
     }
     
     func toReadable() -> String {
