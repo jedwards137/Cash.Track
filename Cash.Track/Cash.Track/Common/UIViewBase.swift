@@ -27,11 +27,11 @@ public class UIViewBase : UIView, UIViewProtocol {
     }
     
     func addSubviews() {
-        abort()
+        fatalError("addSubviews not implemented")
     }
     
     func anchorSubviews() {
-        abort()
+        fatalError("anchorSubviews not implemented")
     }
     
     required init?(coder aDecoder: NSCoder) {

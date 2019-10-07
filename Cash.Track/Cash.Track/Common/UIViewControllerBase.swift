@@ -33,10 +33,10 @@ public class UIViewControllerBase : UIViewController, UIViewControllerProtocol {
     }
     
     func setupPageView() {
-        abort()
+        fatalError("setupPageView not implemented")
     }
     
     func setupPageViewChildren() {
-        abort()
+        fatalError("setupPageViewChildren not implemented")
     }
 }
