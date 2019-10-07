@@ -10,100 +10,67 @@ import Foundation
 
 public class DataStore {
     static let shared = DataStore()
-    //weak var AccUpdateDelegate : WalletUpdateDelegate?
     
-    //private(set) var WalletData : [Wallet] = []
-    private(set) var Transactions : [[Transaction]] = []
+    private(set) var TransactionsByDate : [[Transaction]] = []
     
-    func getTransactionsTotal() -> Double {
+    func getTotalForAllTransactions() -> Double {
         var total : Double = 0
-        for date in Transactions {
-            for transaction in date {
+        for dateGroup in TransactionsByDate {
+            for transaction in dateGroup {
                 total += transaction.Amount
             }
         }
         return total
     }
     
-    init() {
-        
-        let t1 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
-        let t2 = Transaction(name: "pay check 2", amount: 80, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
-        let t3 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSinceNow: 0))
-        let ta1 = [t1,t2,t3]
-        
-        let t7 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
-        let t8 = Transaction(name: "pay check 2", amount: 70, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
-        let t9 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSince1970: 10000000000000))
-        let ta2 = [t7,t8,t9]
-        
-        let t10 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
-        let t11 = Transaction(name: "pay check 2", amount: 60, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
-        let t12 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSince1970: 100000000000))
-        let ta3 = [t10,t11,t12]
-        
-        //let a1 = Wallet(id: 1, name: "Checking", transactions: [t1, t2, t3, t7, t8, t9, t10, t11, t12])
-        //WalletData.append(a1)
-        
-        let t4 = Transaction(name: "pay check 1", amount: 10, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
-        let t5 = Transaction(name: "pay check 2", amount: 50, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
-        let t6 = Transaction(name: "child support", amount: -250, transType: .Withdrawal, date: Date(timeIntervalSince1970: 1000000000))
-        let ta4 = [t4,t5,t6]
-        
-        Transactions.append(ta1)
-        Transactions.append(ta2)
-        Transactions.append(ta3)
-        Transactions.append(ta4)
-        
-//        Transactions = Transactions.sorted(by: { $0.Date > $1.Date })
-//        for t in Transactions {
-//            print(t.Date)
-//        }
-        //let a2 = Wallet(id: 2, name: "savings", transactions: [t4, t5, t6])
-        //WalletData.append(a2)
-
-        //AccUpdateDelegate?.didUpdateAccount()
+    func addNewTransaction(_ transaction: Transaction) {
+        var transactionAdded = false
+        for i in 0..<TransactionsByDate.count {
+            let dateForCurrentGroup = TransactionsByDate[i].first?.Date
+            let correspondingDateGroupFound = dateForCurrentGroup!.compareByYearAndDay(transaction.Date)
+            if correspondingDateGroupFound {
+                TransactionsByDate[i].insert(transaction, at: 0)
+                transactionAdded = true
+            }
+        }
+        if !transactionAdded {
+            TransactionsByDate.append([transaction])
+            sortTransactionGroupsByDate()
+        }
     }
     
-//    public func addTransaction(name: String, amount: Double, transType: TransactionType, date: Date, walletId: Int) -> Bool {
-//        let dataIsValid = name.count > 0 && amount > 0.0
-//        let returnedWallet = getWalletFor(walletId: walletId)
-//        let returnedWalletIsValid = returnedWallet != nil
-//        if returnedWalletIsValid && dataIsValid {
-//            let transaction = Transaction(name: name, amount: amount, transType: transType, date: date)
-//            WalletData.removeAll(where: {
-//                $0.WalletId == walletId
-//            })
-//            returnedWallet?.Transactions.append(transaction)
-//            WalletData.append(returnedWallet!)
-//            return true
-//        }
-//        return false
-//    }
+    private func sortTransactionGroupsByDate() {
+        let sortedTransactions = TransactionsByDate.sorted(by: { $0.first!.Date.compare($1.first!.Date) == .orderedDescending })
+        TransactionsByDate = sortedTransactions
+    }
     
-//    public func addWalletWith(name: String) -> Bool {
-//        let nameHasCharacters = name.count > 0
-//        if nameHasCharacters {
-//            let wallet = Wallet(id: 3, name: name, transactions: [])
-//            WalletData.append(wallet)
-//
-//            let returnedWallet = getWalletFor(walletId: wallet.WalletId)
-//            let returnedWalletIsValid = returnedWallet != nil
-//            if returnedWalletIsValid { return true }
-//        }
-//        return false
-//    }
-//
-//    public func getWalletFor(walletId: Int) -> Wallet? {
-//        let account = WalletData.first(where: { $0.WalletId == walletId })
-//        return account
-//    }
-    
-//    public func getTotalForAllWallets() -> Double {
-//        var amount : Double = 0
-//        for wallet in WalletData {
-//            amount += wallet.GetTotalValue()
-//        }
-//        return amount
-//    }
+    init() {
+        let t1 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
+        addNewTransaction(t1)
+        let t2 = Transaction(name: "pay check 2", amount: 80, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
+        addNewTransaction(t2)
+        let t3 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSinceNow: 0))
+        addNewTransaction(t3)
+        
+        let t7 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
+        addNewTransaction(t7)
+        let t8 = Transaction(name: "pay check 2", amount: 70, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
+        addNewTransaction(t8)
+        let t9 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSince1970: 10000000000000))
+        addNewTransaction(t9)
+        
+        let t10 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
+        addNewTransaction(t10)
+        let t11 = Transaction(name: "pay check 2", amount: 60, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
+        addNewTransaction(t11)
+        let t12 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSince1970: 100000000000))
+        addNewTransaction(t12)
+        
+        let t4 = Transaction(name: "pay check 1", amount: 10, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
+        addNewTransaction(t4)
+        let t5 = Transaction(name: "pay check 2", amount: 50, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
+        addNewTransaction(t5)
+        let t6 = Transaction(name: "child support", amount: -250, transType: .Withdrawal, date: Date(timeIntervalSince1970: 1000000000))
+        addNewTransaction(t6)
+    }
 }
