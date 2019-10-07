@@ -38,8 +38,6 @@ class HomePageView : UIViewBase {
     public let TransactionCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        //layout.minimumInteritemSpacing = 0
-        //layout.minimumLineSpacing = 0
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
         collection.showsVerticalScrollIndicator = false
@@ -56,7 +54,7 @@ class HomePageView : UIViewBase {
     
     internal override func addSubviews() {
         let subviews = [TotalAmountLabel, TransactionsLabel, NewTransactionButton, TransactionCollectionView]
-        subviews.forEach { self.addSubview($0) }
+        subviews.forEach { subview in self.addSubview(subview) }
     }
     
     internal override func anchorSubviews() {

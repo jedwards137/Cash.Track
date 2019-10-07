@@ -47,25 +47,21 @@ public class TransactionCell : UICollectionViewCell {
         AmountLabel.text = "\(amount)"
         
         let amountIsPositive = amount > 0
-        if amountIsPositive {
-            self.backgroundColor = UIColor(r: 129, g: 232, b: 141)
-        }
-        else {
-            self.backgroundColor = UIColor(r: 229, g: 126, b: 100)
-        }
+        self.backgroundColor = amountIsPositive ? UIColor(r: 129, g: 232, b: 141) : UIColor(r: 229, g: 126, b: 100)
     }
     
     private func addSubviews() {
         let subviews = [NameLabel, AmountLabel]
-        subviews.forEach { self.addSubview($0) }
+        subviews.forEach { subview in self.addSubview(subview) }
     }
     
     private func anchorSubviews() {
+        let edgePadding : CGFloat = 10
         NameLabel.setCenterYAnchor(to: self.centerYAnchor)
-        NameLabel.setLeadingAnchor(to: self.leadingAnchor, withPadding: 10)
+        NameLabel.setLeadingAnchor(to: self.leadingAnchor, withPadding: edgePadding)
         
         AmountLabel.setCenterYAnchor(to: self.centerYAnchor)
-        AmountLabel.setTrailingAnchor(to: self.trailingAnchor, withPadding: -10)
+        AmountLabel.setTrailingAnchor(to: self.trailingAnchor, withPadding: -edgePadding)
     }
         
     required init?(coder aDecoder: NSCoder) {
