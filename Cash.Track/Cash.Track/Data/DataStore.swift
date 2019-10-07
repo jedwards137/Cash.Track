@@ -29,6 +29,10 @@ public class DataStore {
             let dateForCurrentGroup = TransactionsByDate[i].first?.Date
             let correspondingDateGroupFound = dateForCurrentGroup!.compareByYearAndDay(transaction.Date)
             if correspondingDateGroupFound {
+                let transactionAlreadyExistsInDateGroup = TransactionsByDate[i].contains(where: { transactionInArray in transactionInArray.Name == transaction.Name })
+                if transactionAlreadyExistsInDateGroup {
+                    break
+                }
                 TransactionsByDate[i].insert(transaction, at: 0)
                 transactionAdded = true
             }
@@ -47,6 +51,8 @@ public class DataStore {
     init() {
         let t1 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
         addNewTransaction(t1)
+        let t22 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
+        addNewTransaction(t22)
         let t2 = Transaction(name: "pay check 2", amount: 80, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
         addNewTransaction(t2)
         let t3 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSinceNow: 0))
