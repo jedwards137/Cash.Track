@@ -132,7 +132,7 @@
 		FC86C4FD22D27B5000932306 /* Cash.Track */ = {
 			isa = PBXGroup;
 			children = (
-				FCDDB425234A743B004097D9 /* New Group */,
+				FCDDB425234A743B004097D9 /* Data */,
 				FC49ACE2234A726B006560D7 /* Vies */,
 				FCD5B77622DB014400ADD85B /* Common */,
 				FC86C4FE22D27B5000932306 /* AppDelegate.swift */,
@@ -172,13 +172,13 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		FCDDB425234A743B004097D9 /* New Group */ = {
+		FCDDB425234A743B004097D9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				FCB67BB522D9703B0096515B /* DataStore.swift */,
 				FC86C52F22D27BFD00932306 /* Transaction.swift */,
 			);
-			path = "New Group";
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
