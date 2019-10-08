@@ -16,7 +16,7 @@ fileprivate protocol UIViewProtocol : UIView {
 
 public class UIViewBase : UIView, UIViewProtocol {
     internal let EdgePadding : CGFloat = 10
-    internal let FieldHeight : CGFloat = 40
+    internal let FieldHeight : CGFloat = 60
     
     init() {
         super.init(frame: .zero)

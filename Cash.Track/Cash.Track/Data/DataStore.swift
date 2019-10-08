@@ -31,6 +31,7 @@ public class DataStore {
             if correspondingDateGroupFound {
                 let transactionAlreadyExistsInDateGroup = TransactionsByDate[i].contains(where: { transactionInArray in transactionInArray.Name == transaction.Name })
                 if transactionAlreadyExistsInDateGroup {
+                    transactionAdded = true
                     break
                 }
                 TransactionsByDate[i].insert(transaction, at: 0)
@@ -53,30 +54,30 @@ public class DataStore {
         addNewTransaction(t1)
         let t22 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
         addNewTransaction(t22)
-        let t2 = Transaction(name: "pay check 2", amount: 80, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
+        let t2 = Transaction(name: "pay check 2", amount: 100, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
         addNewTransaction(t2)
-        let t3 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSinceNow: 0))
+        let t3 = Transaction(name: "child support", amount: -100, transType: .Withdrawal, date: Date(timeIntervalSinceNow: 0))
         addNewTransaction(t3)
         
         let t7 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
         addNewTransaction(t7)
         let t8 = Transaction(name: "pay check 2", amount: 70, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
         addNewTransaction(t8)
-        let t9 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSince1970: 10000000000000))
+        let t9 = Transaction(name: "child support", amount: -70, transType: .Withdrawal, date: Date(timeIntervalSince1970: 10000000000000))
         addNewTransaction(t9)
         
         let t10 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
         addNewTransaction(t10)
         let t11 = Transaction(name: "pay check 2", amount: 60, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
         addNewTransaction(t11)
-        let t12 = Transaction(name: "child support", amount: -25, transType: .Withdrawal, date: Date(timeIntervalSince1970: 100000000000))
+        let t12 = Transaction(name: "child support", amount: -60, transType: .Withdrawal, date: Date(timeIntervalSince1970: 100000000000))
         addNewTransaction(t12)
         
-        let t4 = Transaction(name: "pay check 1", amount: 10, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
+        let t4 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
         addNewTransaction(t4)
         let t5 = Transaction(name: "pay check 2", amount: 50, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
         addNewTransaction(t5)
-        let t6 = Transaction(name: "child support", amount: -250, transType: .Withdrawal, date: Date(timeIntervalSince1970: 1000000000))
+        let t6 = Transaction(name: "child support", amount: -50, transType: .Withdrawal, date: Date(timeIntervalSince1970: 1000000000))
         addNewTransaction(t6)
     }
 }

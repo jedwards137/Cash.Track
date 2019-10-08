@@ -40,7 +40,7 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
     
     override func viewWillAppear(_ animated: Bool) {
         let totalForAllWallets = DataStore.shared.getTotalForAllTransactions()
-        PageView.TotalAmountLabel.text = "\(totalForAllWallets)"
+        PageView.TotalAmountLabel.text = "$\(totalForAllWallets)"
         PageView.TransactionCollectionView.reloadData()
     }
     
