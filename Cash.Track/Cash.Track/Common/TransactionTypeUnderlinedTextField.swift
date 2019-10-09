@@ -8,17 +8,27 @@
 
 import UIKit
 
-class TransactionTypeUnderlinedTextField: UnderlinedTextField {
+class TransactionTypeUnderlinedTextField: UnderlinedTextField, UIPickerViewDelegate, UIPickerViewDataSource {
     internal let TransactionTypePickerView = UIPickerView()
-    private(set) var PickedDate : Date?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         Field.addTarget(self, action: #selector(transactionTypeEditingDidBegin), for: .editingDidBegin)
+        TransactionTypePickerView.dataSource = self
+        TransactionTypePickerView.delegate = self
     }
     
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let titleForRow = TransactionType.allValues[row]
+        return String(describing: titleForRow)
     }
     
     @objc private func transactionTypeEditingDidBegin(sender: UITextField) {
@@ -39,12 +49,17 @@ class TransactionTypeUnderlinedTextField: UnderlinedTextField {
     }
     
     @objc private func transactionTypePickerDone() {
-        //self.Field.text = dateFormatter.string(from: DatePicker.date)
-        //PickedDate = DatePicker.date
+        let selectedRowIndex = TransactionTypePickerView.selectedRow(inComponent: 0)
+        let selectedTransactionTypeText = String(describing: TransactionType.allValues[selectedRowIndex])
+        self.Field.text = selectedTransactionTypeText
         self.endEditing(true)
     }
     
     @objc private func transactionTypePickerCancel() {
         self.endEditing(true)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

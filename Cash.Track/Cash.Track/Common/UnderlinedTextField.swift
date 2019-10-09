@@ -73,13 +73,20 @@ class UnderlinedTextField: UIView {
     
     public func getDouble() -> Double {
         let text = getText()
-        let number = Double(text)
-        let numberIsValid = number != nil
-        if numberIsValid {
-            return number!
-        }
-        let invalidNumber: Double = -1
-        return invalidNumber
+        guard let number : Double = Double(text) else { return 0 }
+        return number
+    }
+    
+    public func hasText() -> Bool {
+        let text = getText()
+        let hasText = text.count > 0
+        return hasText
+    }
+    
+    public func hasDouble() -> Bool {
+        let double = getDouble()
+        let hasDouble = double != 0
+        return hasDouble
     }
     
     internal func setupSelf() {

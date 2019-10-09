@@ -43,7 +43,7 @@ public class TransactionCell : UICollectionViewCell {
     
     public func setTransactionInfo(transaction: Transaction) {
         NameLabel.text = transaction.Name
-        let amount = transaction.Amount
+        let amount = transaction.getAdjustedAmount()
         AmountLabel.text = "\(amount)"
         
         let amountIsPositive = amount > 0

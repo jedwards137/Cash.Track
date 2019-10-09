@@ -25,9 +25,22 @@ class NewTransactionViewController: UIViewControllerBase {
     }
     
     internal override func setupPageViewChildren() {
-        
+        PageView.SubmitButton.addTarget(self, action: #selector(submitTransaction), for: .touchUpInside)
     }
-    
-    
-
+        
+    @objc private func submitTransaction() {
+        let allValuesExist = PageView.TransactionNameField.hasText() && PageView.TransactionTypeField.hasText() && PageView.AmountField.hasDouble()
+        if !allValuesExist { return }
+        
+        let name = PageView.TransactionNameField.getText()
+        let amount = PageView.AmountField.getDouble()
+        let transactionType = PageView.TransactionTypeField.getText()
+        let transactionTypeEnum = TransactionType(rawValue: transactionType)!
+        let date = PageView.DateField.DatePicker.date
+        
+        let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
+        let didAddTransaction = DataStore.shared.addNewTransaction(transactionToAdd)
+        if !didAddTransaction { return }
+        self.navigationController?.popViewController(animated: true)
+    }
 }
