@@ -10,7 +10,6 @@ import UIKit
 
 class DateUnderlinedTextField: UnderlinedTextField {
     internal let DatePicker = UIDatePicker()
-    private(set) var PickedDate : Date?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,11 +39,8 @@ class DateUnderlinedTextField: UnderlinedTextField {
     }
     
     @objc private func datePickerDone() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        self.Field.text = dateFormatter.string(from: DatePicker.date)
-        PickedDate = DatePicker.date
+        let selectedDate = DatePicker.date
+        self.Field.text = selectedDate.toReadable()
         self.endEditing(true)
     }
     
