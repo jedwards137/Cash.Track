@@ -10,7 +10,7 @@ import Foundation
 
 public class Transaction {
     public var Name : String
-    public var Amount : Double
+    private var Amount : Double
     public var TransType : TransactionType
     public var Date : Date
     
@@ -20,9 +20,16 @@ public class Transaction {
         TransType = transType
         Date = date
     }
+    
+    public func getAdjustedAmount() -> Double {
+        let adjustedAmount = TransType == TransactionType.Deposit ? Amount : Amount * -1
+        return adjustedAmount
+    }
 }
 
-public enum TransactionType {
-    case Deposit
-    case Withdrawal
+public enum TransactionType : String {
+    case Deposit = "Deposit"
+    case Withdrawal = "Withdrawal"
+    
+    static var allValues: [TransactionType] { return [Deposit, Withdrawal] }
 }

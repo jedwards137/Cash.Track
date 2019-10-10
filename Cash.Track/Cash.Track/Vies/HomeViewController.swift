@@ -11,10 +11,6 @@ import UIKit
 class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
     private var PageView = HomePageView()
     
-//    override public func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-    
     override func setupNavBar() {
         super.setupNavBar()
         self.title = "Jed's Cash"
@@ -38,22 +34,23 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
     }
     
     @objc private func transitionToNewTransactionPage() {
-        // do nothing right now
+        let newTransactionViewController : NewTransactionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newTransactionViewController") as! NewTransactionViewController
+        self.navigationController?.pushViewController(newTransactionViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let totalForAllWallets = DataStore.shared.getTotalForAllTransactions()
-        PageView.TotalAmountLabel.text = "\(totalForAllWallets)"
+        PageView.TotalAmountLabel.text = "$\(totalForAllWallets)"
         PageView.TransactionCollectionView.reloadData()
     }
     
-    internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // go to selected transaction
-        //        let idForSelectedWallet = Store.shared.WalletData[indexPath.row].WalletId
-//        let walletVc : WalletViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "walletVc") as! WalletViewController
-//        walletVc.setWalletInfo(forId: idForSelectedWallet)
-//        self.navigationController?.pushViewController(walletVc, animated: true)
-    }
+//    internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        // go to selected transaction
+//        //        let idForSelectedWallet = Store.shared.WalletData[indexPath.row].WalletId
+////        let walletVc : WalletViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "walletVc") as! WalletViewController
+////        walletVc.setWalletInfo(forId: idForSelectedWallet)
+////        self.navigationController?.pushViewController(walletVc, animated: true)
+//    }
     
     internal func numberOfSections(in collectionView: UICollectionView) -> Int {
         let numberOfSections = DataStore.shared.TransactionsByDate.count
