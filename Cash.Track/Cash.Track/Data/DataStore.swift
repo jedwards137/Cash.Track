@@ -12,7 +12,6 @@ public class DataStore {
     static let shared = DataStore()
     
     private(set) var TransactionsByDate : [[Transaction]] = []
-    //private(set) var TransactionsByDates : [Date:[Transaction]]
     
     func getTotalForAllTransactions() -> Double {
         var total : Double = 0
