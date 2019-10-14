@@ -9,6 +9,14 @@
 import UIKit
 
 class HomePageView : UIViewBase {
+    public let BackgroundView : UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .blue
+        view.layer.cornerRadius = 20
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     public let TotalAmountLabel : UILabel = {
         let label = UILabel()
         label.text = "$0"
@@ -53,11 +61,16 @@ class HomePageView : UIViewBase {
     }
     
     internal override func addSubviews() {
-        let subviews = [TotalAmountLabel, TransactionsLabel, NewTransactionButton, TransactionCollectionView]
+        let subviews = [BackgroundView, TotalAmountLabel, TransactionsLabel, NewTransactionButton, TransactionCollectionView]
         subviews.forEach { subview in self.addSubview(subview) }
     }
     
     internal override func anchorSubviews() {
+        BackgroundView.setTopAnchor(to: self.topAnchor)
+        BackgroundView.setBottomAnchor(to: TransactionsLabel.topAnchor, withPadding: -EdgePadding)
+        BackgroundView.setLeadingAnchor(to: self.leadingAnchor)
+        BackgroundView.setTrailingAnchor(to: self.trailingAnchor)
+        
         TotalAmountLabel.setTopAnchor(to: self.safeAreaLayoutGuide.topAnchor, withPadding: 2*EdgePadding)
         TotalAmountLabel.setHeightAnchor(to: 75)
         TotalAmountLabel.setCenterXAnchor(to: self.centerXAnchor)
