@@ -20,9 +20,9 @@ class HomePageView : UIViewBase {
     public let TotalAmountLabel : UILabel = {
         let label = UILabel()
         label.text = "$0"
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 75)
+        label.font = UIFont.systemFont(ofSize: 65)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,15 +67,15 @@ class HomePageView : UIViewBase {
     
     internal override func anchorSubviews() {
         BackgroundView.setTopAnchor(to: self.topAnchor)
-        BackgroundView.setBottomAnchor(to: TransactionsLabel.topAnchor, withPadding: -EdgePadding)
+        BackgroundView.setBottomAnchor(to: TotalAmountLabel.bottomAnchor, withPadding: 2*EdgePadding)
         BackgroundView.setLeadingAnchor(to: self.leadingAnchor)
         BackgroundView.setTrailingAnchor(to: self.trailingAnchor)
         
-        TotalAmountLabel.setTopAnchor(to: self.safeAreaLayoutGuide.topAnchor, withPadding: 2*EdgePadding)
+        TotalAmountLabel.setTopAnchor(to: self.safeAreaLayoutGuide.topAnchor)
         TotalAmountLabel.setHeightAnchor(to: 75)
         TotalAmountLabel.setCenterXAnchor(to: self.centerXAnchor)
         
-        TransactionsLabel.setTopAnchor(to: TotalAmountLabel.bottomAnchor, withPadding: 2*EdgePadding)
+        TransactionsLabel.setTopAnchor(to: BackgroundView.bottomAnchor, withPadding: 2*EdgePadding)
         TransactionsLabel.setHeightAnchor(to: 25)
         TransactionsLabel.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
         TransactionsLabel.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
@@ -84,7 +84,7 @@ class HomePageView : UIViewBase {
         NewTransactionButton.setBottomAnchor(to: TransactionsLabel.bottomAnchor)
         NewTransactionButton.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
         
-        TransactionCollectionView.setTopAnchor(to: NewTransactionButton.bottomAnchor, withPadding: 2*EdgePadding)
+        TransactionCollectionView.setTopAnchor(to: NewTransactionButton.bottomAnchor, withPadding: EdgePadding)
         TransactionCollectionView.setBottomAnchor(to: self.bottomAnchor)
         TransactionCollectionView.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
         TransactionCollectionView.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
