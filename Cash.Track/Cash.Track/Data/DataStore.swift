@@ -12,6 +12,7 @@ public class DataStore {
     static let shared = DataStore()
     
     private(set) var TransactionsByDate : [[Transaction]] = []
+    private let TransactionDataKey : String = "transactionData"
     
     func getTotalForAllTransactions() -> Double {
         var total : Double = 0
@@ -43,7 +44,12 @@ public class DataStore {
             transactionAdded = true
             sortTransactionGroupsByDate()
         }
+        saveTransactionData()
         return transactionAdded
+    }
+    
+    private func saveTransactionData() {
+        UserDefaults.standard.set(TransactionsByDate, forKey: TransactionDataKey)
     }
     
     private func sortTransactionGroupsByDate() {
@@ -52,34 +58,9 @@ public class DataStore {
     }
     
     init() {
-        let t1 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
-        addNewTransaction(t1)
-        let t22 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
-        addNewTransaction(t22)
-        let t2 = Transaction(name: "pay check 2", amount: 100, transType: .Deposit, date: Date(timeIntervalSinceNow: 0))
-        addNewTransaction(t2)
-        let t3 = Transaction(name: "child support", amount: 100, transType: .Withdrawal, date: Date(timeIntervalSinceNow: 0))
-        addNewTransaction(t3)
-        
-        let t7 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
-        addNewTransaction(t7)
-        let t8 = Transaction(name: "pay check 2", amount: 70, transType: .Deposit, date: Date(timeIntervalSince1970: 10000000000000))
-        addNewTransaction(t8)
-        let t9 = Transaction(name: "child support", amount: 70, transType: .Withdrawal, date: Date(timeIntervalSince1970: 10000000000000))
-        addNewTransaction(t9)
-        
-        let t10 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
-        addNewTransaction(t10)
-        let t11 = Transaction(name: "pay check 2", amount: 60, transType: .Deposit, date: Date(timeIntervalSince1970: 100000000000))
-        addNewTransaction(t11)
-        let t12 = Transaction(name: "child support", amount: 60, transType: .Withdrawal, date: Date(timeIntervalSince1970: 100000000000))
-        addNewTransaction(t12)
-        
-        let t4 = Transaction(name: "pay check 1", amount: 1000, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
-        addNewTransaction(t4)
-        let t5 = Transaction(name: "pay check 2", amount: 50, transType: .Deposit, date: Date(timeIntervalSince1970: 1000000000))
-        addNewTransaction(t5)
-        let t6 = Transaction(name: "child support", amount: 50, transType: .Withdrawal, date: Date(timeIntervalSince1970: 1000000000))
-        addNewTransaction(t6)
+        let storedTransactionData = UserDefaults.standard.array(forKey: TransactionDataKey)
+        let hasStoredTransactions = storedTransactionData?.count ?? 0 > 0
+        if !hasStoredTransactions { return }
+        TransactionsByDate = storedTransactionData as! [[Transaction]]
     }
 }
