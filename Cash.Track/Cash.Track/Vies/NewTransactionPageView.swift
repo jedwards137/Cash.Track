@@ -9,18 +9,10 @@
 import UIKit
 
 class NewTransactionPageView: UIViewBase {
-    public let BackgroundView : UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .blue
-        view.layer.cornerRadius = 20
-        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    private(set) var TransactionNameField = UnderlinedTextField(title: "Name", highlightColor: .blue, textAlignment: .left, placeholder: "Transaction #1", underlineColor: .lightGray)
-    private(set) var TransactionTypeField = TransactionTypeUnderlinedTextField(title: "Deposit / Withdrawal", highlightColor: .blue, textAlignment: .left, placeholder: "Deposit", underlineColor: .lightGray)
-    private(set) var AmountField = UnderlinedTextField(title: "Amount", highlightColor: .blue, textAlignment: .left, placeholder: "0.0", keyboardType: .decimalPad, underlineColor: .lightGray)
-    private(set) var DateField = DateUnderlinedTextField(title: "Date", highlightColor: .blue, textAlignment: .left, placeholder: "Jan 1, 2000", underlineColor: .lightGray)
+    private(set) var TransactionNameField = UnderlinedTextField(title: "Name", highlightColor: .black, textAlignment: .left, placeholder: "Transaction #1", underlineColor: .lightGray)
+    private(set) var TransactionTypeField = TransactionTypeUnderlinedTextField(title: "Transaction Type", highlightColor: .black, textAlignment: .left, placeholder: "Deposit", underlineColor: .lightGray)
+    private(set) var AmountField = UnderlinedTextField(title: "Amount", highlightColor: .black, textAlignment: .left, placeholder: "0.0", keyboardType: .decimalPad, underlineColor: .lightGray)
+    private(set) var DateField = DateUnderlinedTextField(title: "Date", highlightColor: .black, textAlignment: .left, placeholder: "Jan 1, 2000", underlineColor: .lightGray)
     private(set) var SubmitButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .blue
@@ -43,16 +35,11 @@ class NewTransactionPageView: UIViewBase {
     }
     
     internal override func addSubviews() {
-        let subviews = [BackgroundView, TransactionNameField, TransactionTypeField, AmountField, DateField, SubmitButton]
+        let subviews = [TransactionNameField, TransactionTypeField, AmountField, DateField, SubmitButton]
         subviews.forEach { self.addSubview($0) }
     }
     
     internal override func anchorSubviews() {
-        BackgroundView.setTopAnchor(to: self.topAnchor)
-        BackgroundView.setBottomAnchor(to: TransactionNameField.topAnchor, withPadding: -EdgePadding)
-        BackgroundView.setLeadingAnchor(to: self.leadingAnchor)
-        BackgroundView.setTrailingAnchor(to: self.trailingAnchor)
-        
         TransactionNameField.setTopAnchor(to: self.safeAreaLayoutGuide.topAnchor, withPadding: 2*EdgePadding)
         TransactionNameField.setHeightAnchor(to: FieldHeight)
         TransactionNameField.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
