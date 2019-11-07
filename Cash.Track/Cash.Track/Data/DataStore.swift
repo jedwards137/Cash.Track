@@ -13,6 +13,7 @@ public class DataStore {
     
     private(set) var TransactionsByDate : [[Transaction]] = []
     private let TransactionDataKey : String = "transactionData"
+    private var DummyDataIsShown : Bool = false
     
     func getTotalForAllTransactions() -> Double {
         var total : Double = 0
@@ -25,6 +26,10 @@ public class DataStore {
     }
     
     func addNewTransaction(_ transaction: Transaction) -> Bool {
+        if DummyDataIsShown {
+            TransactionsByDate = []
+        }
+        
         var transactionAdded = false
         for i in 0..<TransactionsByDate.count {
             let dateForCurrentGroup = TransactionsByDate[i].first?.Date
@@ -44,12 +49,20 @@ public class DataStore {
             transactionAdded = true
             sortTransactionGroupsByDate()
         }
-        saveTransactionData()
+        if !DummyDataIsShown {
+            saveTransactionData()
+        }
         return transactionAdded
     }
     
     private func saveTransactionData() {
-        UserDefaults.standard.set(TransactionsByDate, forKey: TransactionDataKey)
+//        do {
+//            let encodedTransactions : Data = try NSKeyedArchiver.archivedData(withRootObject: TransactionsByDate, requiringSecureCoding: true)
+//            UserDefaults.standard.set(encodedTransactions, forKey: TransactionDataKey)
+//        } catch {
+//            print("error")
+//        }
+        
     }
     
     private func sortTransactionGroupsByDate() {
@@ -58,9 +71,23 @@ public class DataStore {
     }
     
     init() {
-        let storedTransactionData = UserDefaults.standard.array(forKey: TransactionDataKey)
-        let hasStoredTransactions = storedTransactionData?.count ?? 0 > 0
-        if !hasStoredTransactions { return }
-        TransactionsByDate = storedTransactionData as! [[Transaction]]
+        //let encodedStoredTransactionData = UserDefaults.standard.data(forKey: TransactionDataKey)
+//        let hasStoredTransactions = decodedStoredTransactionData?.count ?? 0 > 0
+//        if !hasStoredTransactions {
+//            addDummyData()
+//            return
+//        }
+//        TransactionsByDate = decodedStoredTransactionData as! [[Transaction]]
+        addDummyData()
+    }
+    
+    private func addDummyData() {
+        let transaction1 = Transaction(name: "Paycheck 1", amount: 500, transType: .Deposit, date: Date())
+        let transaction2 = Transaction(name: "Paycheck 2", amount: 750, transType: .Deposit, date: Date())
+        let transaction3 = Transaction(name: "Rent", amount: 750, transType: .Withdrawal, date: Date())
+        let transaction4 = Transaction(name: "Fast Food", amount: 15, transType: .Withdrawal, date: Date())
+        let transactions = [transaction1, transaction2, transaction3, transaction4]
+        transactions.forEach { addNewTransaction($0) }
+        DummyDataIsShown = false //true
     }
 }

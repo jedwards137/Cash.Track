@@ -13,7 +13,7 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
     
     override func setupNavBar() {
         super.setupNavBar()
-        self.title = "Jed's Cash"
+        self.title = "My Cash"
     }
     
     override func setupPageView() {
