@@ -9,10 +9,10 @@
 import Foundation
 
 public class Transaction {
-    public var Name : String
-    private var Amount : Double
-    public var TransType : TransactionType
-    public var Date : Date
+    private(set) var Name : String
+    private(set) var Amount : Double
+    private(set) var TransType : TransactionType
+    private(set) var Date : Date
     
     public init(name: String, amount: Double, transType: TransactionType, date: Date) {
         Name = name
