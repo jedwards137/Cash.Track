@@ -12,7 +12,7 @@ class EditTransactionPageView: UIViewBase {
     private(set) var TransactionNameField = UnderlinedTextField(title: "Name", highlightColor: .black, textAlignment: .left, placeholder: "Transaction #1", underlineColor: .lightGray)
     private(set) var TransactionTypeField = TransactionTypeUnderlinedTextField(title: "Transaction Type", highlightColor: .black, textAlignment: .left, placeholder: "Deposit", underlineColor: .lightGray)
     private(set) var AmountField = UnderlinedTextField(title: "Amount", highlightColor: .black, textAlignment: .left, placeholder: "0.00", keyboardType: .decimalPad, underlineColor: .lightGray)
-    private(set) var DateField = DateUnderlinedTextField(title: "Date", highlightColor: .black, textAlignment: .left, placeholder: "Jan 1, 2000", underlineColor: .lightGray)
+    private(set) var DateField = DateTimeUnderlinedTextField(title: "Date", highlightColor: .black, textAlignment: .left, placeholder: "Jan 1, 2000", underlineColor: .lightGray)
     private(set) var SubmitButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .blue

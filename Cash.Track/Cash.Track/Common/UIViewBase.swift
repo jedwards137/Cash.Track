@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-fileprivate protocol UIViewProtocol : UIView {
+public protocol UIViewProtocol : UIView {
     func addSubviews()
     func anchorSubviews()
 }
@@ -26,11 +26,11 @@ public class UIViewBase : UIView, UIViewProtocol {
         anchorSubviews()
     }
     
-    func addSubviews() {
+    public func addSubviews() {
         fatalError("addSubviews not implemented")
     }
     
-    func anchorSubviews() {
+    public func anchorSubviews() {
         fatalError("anchorSubviews not implemented")
     }
     

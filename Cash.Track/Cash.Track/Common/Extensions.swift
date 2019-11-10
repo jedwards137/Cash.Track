@@ -12,8 +12,8 @@ import UIKit
 extension Date {
     func getComponents() -> [String: Int] {
         let calendar = Calendar.current
-        let selfComponents = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year], from: self)
-        let components = ["day" : selfComponents.day!, "month" : selfComponents.month!, "year" : selfComponents.year!]
+        let selfComponents = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year, Calendar.Component.hour, Calendar.Component.minute], from: self)
+        let components = ["day" : selfComponents.day!, "month" : selfComponents.month!, "year" : selfComponents.year!, "hour" : selfComponents.hour!, "minute" : selfComponents.minute!]
         return components
     }
     
@@ -31,7 +31,7 @@ extension Date {
     func toReadable() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        dateFormatter.timeStyle = .short
         let date = dateFormatter.string(from: self)
         return date
     }

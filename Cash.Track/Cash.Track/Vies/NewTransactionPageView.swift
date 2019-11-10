@@ -9,10 +9,12 @@
 import UIKit
 
 class NewTransactionPageView: UIViewBase {
-    private(set) var TransactionNameField = UnderlinedTextField(title: "Name", highlightColor: .black, textAlignment: .left, placeholder: "Transaction #1", underlineColor: .lightGray)
-    private(set) var TransactionTypeField = TransactionTypeUnderlinedTextField(title: "Transaction Type", highlightColor: .black, textAlignment: .left, placeholder: "Deposit", underlineColor: .lightGray)
-    private(set) var AmountField = UnderlinedTextField(title: "Amount", highlightColor: .black, textAlignment: .left, placeholder: "0.00", keyboardType: .decimalPad, underlineColor: .lightGray)
-    private(set) var DateField = DateUnderlinedTextField(title: "Date", highlightColor: .black, textAlignment: .left, placeholder: "Jan 1, 2000", underlineColor: .lightGray)
+    private let HighlightColor : UIColor = .black
+    private let UnderlineColor : UIColor = .lightGray
+    private(set) var TransactionNameField : UnderlinedTextField
+    private(set) var TransactionTypeField : TransactionTypeUnderlinedTextField
+    private(set) var AmountField : DollarUnderlinedTextField
+    private(set) var DateTimeField : DateTimeUnderlinedTextField
     private(set) var SubmitButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .blue
@@ -24,7 +26,13 @@ class NewTransactionPageView: UIViewBase {
     }()
     
     override init() {
+        TransactionNameField = UnderlinedTextField(title: "Name", highlightColor: HighlightColor, textAlignment: .left, placeholder: "Transaction #1", underlineColor: UnderlineColor)
+        TransactionTypeField = TransactionTypeUnderlinedTextField(title: "Transaction Type", highlightColor: HighlightColor, textAlignment: .left, placeholder: "Deposit", underlineColor: UnderlineColor)
+        AmountField = DollarUnderlinedTextField(title: "Amount", highlightColor: HighlightColor, textAlignment: .left, placeholder: "0.00", keyboardType: .decimalPad, underlineColor: UnderlineColor)
+        DateTimeField = DateTimeUnderlinedTextField(title: "Date", highlightColor: HighlightColor, textAlignment: .left, placeholder: "Jan 1, 2000 at 11:00 AM", underlineColor: UnderlineColor)
+        
         super.init()
+        
         self.backgroundColor = .white
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(resignFirstResponderHandler))
         self.addGestureRecognizer(tapRecognizer)
@@ -34,12 +42,12 @@ class NewTransactionPageView: UIViewBase {
         self.endEditing(true)
     }
     
-    internal override func addSubviews() {
-        let subviews = [TransactionNameField, TransactionTypeField, AmountField, DateField, SubmitButton]
+    public override func addSubviews() {
+        let subviews = [TransactionNameField, TransactionTypeField, AmountField, DateTimeField, SubmitButton]
         subviews.forEach { self.addSubview($0) }
     }
     
-    internal override func anchorSubviews() {
+    public override func anchorSubviews() {
         TransactionNameField.setTopAnchor(to: self.safeAreaLayoutGuide.topAnchor, withPadding: 2*EdgePadding)
         TransactionNameField.setHeightAnchor(to: FieldHeight)
         TransactionNameField.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
@@ -48,19 +56,19 @@ class NewTransactionPageView: UIViewBase {
         TransactionTypeField.setTopAnchor(to: TransactionNameField.bottomAnchor, withPadding: 3*EdgePadding)
         TransactionTypeField.setHeightAnchor(to: FieldHeight)
         TransactionTypeField.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
-        TransactionTypeField.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
+        TransactionTypeField.setTrailingAnchor(to: self.centerXAnchor, withPadding: -EdgePadding)
         
-        AmountField.setTopAnchor(to: TransactionTypeField.bottomAnchor, withPadding: 3*EdgePadding)
+        AmountField.setTopAnchor(to: TransactionTypeField.topAnchor)
         AmountField.setHeightAnchor(to: FieldHeight)
-        AmountField.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
-        AmountField.setTrailingAnchor(to: self.centerXAnchor, withPadding: -EdgePadding)
+        AmountField.setLeadingAnchor(to: self.centerXAnchor, withPadding: EdgePadding)
+        AmountField.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
         
-        DateField.setTopAnchor(to: AmountField.topAnchor)
-        DateField.setHeightAnchor(to: FieldHeight)
-        DateField.setLeadingAnchor(to: self.centerXAnchor, withPadding: EdgePadding)
-        DateField.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
+        DateTimeField.setTopAnchor(to: TransactionTypeField.bottomAnchor, withPadding: 2*EdgePadding)
+        DateTimeField.setHeightAnchor(to: FieldHeight)
+        DateTimeField.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
+        DateTimeField.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
         
-        SubmitButton.setTopAnchor(to: DateField.bottomAnchor, withPadding: 4*EdgePadding)
+        SubmitButton.setTopAnchor(to: DateTimeField.bottomAnchor, withPadding: 4*EdgePadding)
         SubmitButton.setHeightAnchor(to: 50)
         SubmitButton.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
         SubmitButton.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)

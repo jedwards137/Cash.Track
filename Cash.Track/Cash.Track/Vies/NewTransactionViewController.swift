@@ -36,7 +36,7 @@ class NewTransactionViewController: UIViewControllerBase {
         let amount = PageView.AmountField.getDouble()
         let transactionType = PageView.TransactionTypeField.getText()
         let transactionTypeEnum = TransactionType(rawValue: transactionType)!
-        let date = PageView.DateField.DatePicker.date
+        let date = PageView.DateTimeField.DatePicker.date
         
         let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
         let didAddTransaction = DataStore.shared.addNewTransaction(transactionToAdd)

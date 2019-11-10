@@ -1,28 +1,29 @@
 //
-//  DateUnderlinedTextField.swift
+//  TimeUnderlinedTextField.swift
 //  Cash.Track
 //
-//  Created by Jake Edwards on 10/7/19.
+//  Created by Jake Edwards on 11/10/19.
 //  Copyright © 2019 Big Ahi Software. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class DateUnderlinedTextField: UnderlinedTextField {
+class DateTimeUnderlinedTextField: UnderlinedTextField {
     internal let DatePicker = UIDatePicker()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Field.addTarget(self, action: #selector(dateEditingDidBegin), for: .editingDidBegin)
+        Field.addTarget(self, action: #selector(timeEditingDidBegin), for: .editingDidBegin)
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func dateEditingDidBegin(sender: UITextField) {
+    @objc private func timeEditingDidBegin(sender: UITextField) {
         Underline.backgroundColor = HighlightColor
-        DatePicker.datePickerMode = .date
+        DatePicker.datePickerMode = .dateAndTime
         let toolBar = createToolbar()
         sender.inputAccessoryView = toolBar
         sender.inputView = DatePicker
