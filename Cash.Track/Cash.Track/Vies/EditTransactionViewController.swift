@@ -10,8 +10,11 @@ import UIKit
 
 class EditTransactionViewController: UIViewControllerBase {
     private var PageView = EditTransactionPageView()
+    private var IndexPath : IndexPath!
         
-    public func setTransactionInfo(with transaction: Transaction) {
+    public func setTransactionLocation(at indexPath: IndexPath) {
+        IndexPath = indexPath
+        let transaction = DataStore.shared.getTransactionAt(index: IndexPath)
         PageView.setTransactionInfo(with: transaction)
     }
     
@@ -29,7 +32,8 @@ class EditTransactionViewController: UIViewControllerBase {
     }
     
     internal override func setupPageViewChildren() {
-        PageView.SubmitButton.addTarget(self, action: #selector(submitTransaction), for: .touchUpInside)
+        PageView.UpdateButton.addTarget(self, action: #selector(submitTransaction), for: .touchUpInside)
+        PageView.DeleteButton.addTarget(self, action: #selector(deleteTransaction), for: .touchUpInside)
     }
         
     @objc private func submitTransaction() {
@@ -40,11 +44,17 @@ class EditTransactionViewController: UIViewControllerBase {
         let amount = PageView.AmountField.getDouble()
         let transactionType = PageView.TransactionTypeField.getText()
         let transactionTypeEnum = TransactionType(rawValue: transactionType)!
-        let date = PageView.DateField.DatePicker.date
+        let date = PageView.DateTimeField.DatePicker.date
         
         let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
+        DataStore.shared.deleteTransactionAt(index: IndexPath)
         let didAddTransaction = DataStore.shared.addNewTransaction(transactionToAdd)
         if !didAddTransaction { return }
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func deleteTransaction() {
+        DataStore.shared.deleteTransactionAt(index: IndexPath)
         self.navigationController?.popViewController(animated: true)
     }
 }

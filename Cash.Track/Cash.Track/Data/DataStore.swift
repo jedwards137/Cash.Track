@@ -13,46 +13,47 @@ public class DataStore {
     
     private(set) var TransactionsByDate : [[Transaction]] = []
     private let TransactionDataKey : String = "transactionData"
-    private var DummyDataIsShown : Bool = false
     
     func getTotalForAllTransactions() -> Double {
         var total : Double = 0
-        for dateGroup in TransactionsByDate {
-            for transaction in dateGroup {
-                total += transaction.getAdjustedAmount()
-            }
+        for transactionList in TransactionsByDate {
+            transactionList.forEach { total += $0.getAdjustedAmount() }
         }
         return total
     }
     
-    func addNewTransaction(_ transaction: Transaction) -> Bool {
-        if DummyDataIsShown {
-            TransactionsByDate = []
-        }
-        
-        var transactionAdded = false
+    func getTransactionAt(index: IndexPath) -> Transaction {
+        let transaction = TransactionsByDate[index.section][index.row]
+        return transaction
+    }
+    
+    func addNewTransaction(_ transactionToAdd: Transaction) -> Bool {
         for i in 0..<TransactionsByDate.count {
-            let dateForCurrentGroup = TransactionsByDate[i].first?.Date
-            let correspondingDateGroupFound = dateForCurrentGroup!.compareByDayMonthYear(transaction.Date)
-            if correspondingDateGroupFound {
-                let transactionAlreadyExistsInDateGroup = TransactionsByDate[i].contains(where: { transactionInArray in transactionInArray.Name == transaction.Name })
-                if transactionAlreadyExistsInDateGroup {
-                    transactionAdded = true
-                    break
+            let transactionGroup = TransactionsByDate[i]
+            let dateForGroup = transactionGroup.first!.Date
+            let isCorrectTransactionGroupToAddIn = dateForGroup.equaltTo(transactionToAdd.Date)
+            if isCorrectTransactionGroupToAddIn {
+                for transaction in transactionGroup {
+                    if transaction.Date.extendedEqualTo(transactionToAdd.Date) && transaction.Name == transactionToAdd.Name {
+                        return false
+                    }
                 }
-                TransactionsByDate[i].insert(transaction, at: 0)
-                transactionAdded = true
+                TransactionsByDate[i].append(transactionToAdd)
+                sortTransactionGroupsByDate()
+                return true
             }
         }
-        if !transactionAdded {
-            TransactionsByDate.append([transaction])
-            transactionAdded = true
-            sortTransactionGroupsByDate()
+        TransactionsByDate.append([transactionToAdd])
+        sortTransactionGroupsByDate()
+        return true
+    }
+    
+    func deleteTransactionAt(index: IndexPath) {
+        TransactionsByDate[index.section].remove(at: index.row)
+        let needToRemoveSection = TransactionsByDate[index.section].count < 1
+        if needToRemoveSection {
+            TransactionsByDate.remove(at: index.row)
         }
-        if !DummyDataIsShown {
-            saveTransactionData()
-        }
-        return transactionAdded
     }
     
     private func saveTransactionData() {
@@ -88,6 +89,5 @@ public class DataStore {
         let transaction4 = Transaction(name: "Fast Food", amount: 15, transType: .Withdrawal, date: Date())
         let transactions = [transaction1, transaction2, transaction3, transaction4]
         transactions.forEach { addNewTransaction($0) }
-        DummyDataIsShown = false //true
     }
 }

@@ -25,6 +25,15 @@ public class Transaction {
         let adjustedAmount = TransType == TransactionType.Deposit ? Amount : Amount * -1
         return adjustedAmount
     }
+    
+    public func equalTo(_ rhs: Transaction) -> Bool {
+        let namesAreEqual = self.Name == rhs.Name
+        let amountsAreEqual = self.Amount == rhs.Amount
+        let transTypeAreEqual = self.TransType == rhs.TransType
+        let datesAreEqual = self.Date.extendedEqualTo(rhs.Date)
+        let bothAreEqual = namesAreEqual && amountsAreEqual && transTypeAreEqual && datesAreEqual
+        return bothAreEqual
+    }
 }
 
 public enum TransactionType : String {

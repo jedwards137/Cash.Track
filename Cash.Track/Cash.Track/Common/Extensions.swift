@@ -10,6 +10,20 @@ import Foundation
 import UIKit
 
 extension Date {
+    func equaltTo(_ rhs: Date) -> Bool {
+        let lhsComponents = self.getComponents()
+        let rhsComponents = rhs.getComponents()
+        let equivalentTo = lhsComponents["year"] == rhsComponents["year"] && lhsComponents["month"] == rhsComponents["month"] && lhsComponents["day"] == rhsComponents["day"]
+        return equivalentTo
+    }
+    
+    func extendedEqualTo(_ rhs: Date) -> Bool {
+        let lhsComponents = self.getComponents()
+        let rhsComponents = rhs.getComponents()
+        let equivalentTo = lhsComponents["year"] == rhsComponents["year"] && lhsComponents["month"] == rhsComponents["month"] && lhsComponents["day"] == rhsComponents["day"] && lhsComponents["hour"] == rhsComponents["hour"] && lhsComponents["minute"] == rhsComponents["minute"]
+        return equivalentTo
+    }
+    
     func getComponents() -> [String: Int] {
         let calendar = Calendar.current
         let selfComponents = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year, Calendar.Component.hour, Calendar.Component.minute], from: self)
@@ -17,21 +31,10 @@ extension Date {
         return components
     }
     
-    func compareByDayMonthYear(_ compareDate: Date) -> Bool {
-        let selfComponents = self.getComponents()
-        let compareToComponents = compareDate.getComponents()
-        
-        let yearsAreEqual = selfComponents["year"] == compareToComponents["year"]
-        let monthsAreEqual = selfComponents["month"] == compareToComponents["month"]
-        let daysAreEqual = selfComponents["day"] == compareToComponents["day"]
-        let datesAreEqual = yearsAreEqual && monthsAreEqual && daysAreEqual
-        return datesAreEqual
-    }
-    
-    func toReadable() -> String {
+    func toReadable(withTimeStyle timeStyle: DateFormatter.Style) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = timeStyle
         let date = dateFormatter.string(from: self)
         return date
     }

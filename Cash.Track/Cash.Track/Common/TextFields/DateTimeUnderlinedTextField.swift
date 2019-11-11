@@ -41,7 +41,7 @@ class DateTimeUnderlinedTextField: UnderlinedTextField {
     
     @objc private func datePickerDone() {
         let selectedDate = DatePicker.date
-        self.Field.text = selectedDate.toReadable()
+        self.Field.text = selectedDate.toReadable(withTimeStyle: .short)
         self.endEditing(true)
     }
     

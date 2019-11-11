@@ -45,9 +45,8 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
     }
     
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let transactionToEdit = DataStore.shared.TransactionsByDate[indexPath.section][indexPath.row]
         let editTransactionViewController : EditTransactionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editTransactionViewController") as! EditTransactionViewController
-        editTransactionViewController.setTransactionInfo(with: transactionToEdit)
+        editTransactionViewController.setTransactionLocation(at: indexPath)
         self.navigationController?.pushViewController(editTransactionViewController, animated: true)
     }
     

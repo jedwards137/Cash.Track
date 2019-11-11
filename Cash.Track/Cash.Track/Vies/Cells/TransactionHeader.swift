@@ -31,7 +31,7 @@ public class TransactionHeader : UICollectionReusableView {
     }
     
     public func setSectionDate(to date: Date) {
-        NameLabel.text = date.toReadable()
+        NameLabel.text = date.toReadable(withTimeStyle: .none)
     }
     
     private func addSubviews() {
