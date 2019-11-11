@@ -1,25 +1,34 @@
 //
-//  NewTransactionPageView.swift
+//  EditTransactionPageView.swift
 //  Cash.Track
 //
-//  Created by Jake Edwards on 10/7/19.
+//  Created by Jake Edwards on 11/7/19.
 //  Copyright © 2019 Big Ahi Software. All rights reserved.
 //
 
 import UIKit
 
-class NewTransactionPageView: UIViewBase {
+class EditTransactionPageView: UIViewBase {
     private let HighlightColor : UIColor = .black
     private let UnderlineColor : UIColor = .lightGray
     private(set) var TransactionNameField : UnderlinedTextField
     private(set) var TransactionTypeField : TransactionTypeUnderlinedTextField
     private(set) var AmountField : DollarUnderlinedTextField
     private(set) var DateTimeField : DateTimeUnderlinedTextField
-    private(set) var SubmitButton : UIButton = {
+    private(set) var DeleteButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .red
+        button.layer.cornerRadius = 8
+        button.setTitle("Delete", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    private(set) var UpdateButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 8
-        button.setTitle("Submit", for: .normal)
+        button.setTitle("Update", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -38,12 +47,19 @@ class NewTransactionPageView: UIViewBase {
         self.addGestureRecognizer(tapRecognizer)
     }
     
+    public func setTransactionInfo(with transaction: Transaction) {
+        TransactionNameField.Field.text = transaction.Name
+        TransactionTypeField.Field.text = transaction.TransType.rawValue
+        AmountField.Field.text = "\(transaction.Amount)"
+        DateTimeField.Field.text = transaction.Date.toReadable(withTimeStyle: .short)
+    }
+    
     @objc private func resignFirstResponderHandler() {
         self.endEditing(true)
     }
     
     public override func addSubviews() {
-        let subviews = [TransactionNameField, TransactionTypeField, AmountField, DateTimeField, SubmitButton]
+        let subviews = [TransactionNameField, TransactionTypeField, AmountField, DateTimeField, DeleteButton, UpdateButton]
         subviews.forEach { self.addSubview($0) }
     }
     
@@ -68,10 +84,15 @@ class NewTransactionPageView: UIViewBase {
         DateTimeField.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
         DateTimeField.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
         
-        SubmitButton.setTopAnchor(to: DateTimeField.bottomAnchor, withPadding: 4*EdgePadding)
-        SubmitButton.setHeightAnchor(to: 50)
-        SubmitButton.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
-        SubmitButton.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
+        DeleteButton.setTopAnchor(to: DateTimeField.bottomAnchor, withPadding: 4*EdgePadding)
+        DeleteButton.setHeightAnchor(to: 50)
+        DeleteButton.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*EdgePadding)
+        DeleteButton.setTrailingAnchor(to: self.centerXAnchor, withPadding: -EdgePadding)
+        
+        UpdateButton.setTopAnchor(to: DeleteButton.topAnchor)
+        UpdateButton.setBottomAnchor(to: DeleteButton.bottomAnchor)
+        UpdateButton.setLeadingAnchor(to: self.centerXAnchor, withPadding: EdgePadding)
+        UpdateButton.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -11,7 +11,10 @@
 		FC05B597234BBCB900F15A49 /* NewTransactionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B596234BBCB900F15A49 /* NewTransactionPageView.swift */; };
 		FC05B599234C080700F15A49 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B598234C080700F15A49 /* UnderlinedTextField.swift */; };
 		FC05B59B234C083300F15A49 /* TransactionTypeUnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B59A234C083300F15A49 /* TransactionTypeUnderlinedTextField.swift */; };
-		FC05B59D234C087300F15A49 /* DateUnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B59C234C087300F15A49 /* DateUnderlinedTextField.swift */; };
+		FC0E294323746D23002C9536 /* EditTransactionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0E294223746D22002C9536 /* EditTransactionPageView.swift */; };
+		FC0E294523746D71002C9536 /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0E294423746D71002C9536 /* EditTransactionViewController.swift */; };
+		FC0E29492378ACE5002C9536 /* DateTimeUnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0E29482378ACE5002C9536 /* DateTimeUnderlinedTextField.swift */; };
+		FC0E294B2378AE9B002C9536 /* DollarUnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0E294A2378AE9B002C9536 /* DollarUnderlinedTextField.swift */; };
 		FC49ACDF234A3988006560D7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49ACDE234A3988006560D7 /* Extensions.swift */; };
 		FC49ACE1234A54AA006560D7 /* TransactionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */; };
 		FC86C4FF22D27B5000932306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86C4FE22D27B5000932306 /* AppDelegate.swift */; };
@@ -51,7 +54,10 @@
 		FC05B596234BBCB900F15A49 /* NewTransactionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionPageView.swift; sourceTree = "<group>"; };
 		FC05B598234C080700F15A49 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UnderlinedTextField.swift; path = ../UnderlinedTextField.swift; sourceTree = "<group>"; };
 		FC05B59A234C083300F15A49 /* TransactionTypeUnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionTypeUnderlinedTextField.swift; path = ../TransactionTypeUnderlinedTextField.swift; sourceTree = "<group>"; };
-		FC05B59C234C087300F15A49 /* DateUnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateUnderlinedTextField.swift; path = ../DateUnderlinedTextField.swift; sourceTree = "<group>"; };
+		FC0E294223746D22002C9536 /* EditTransactionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionPageView.swift; sourceTree = "<group>"; };
+		FC0E294423746D71002C9536 /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
+		FC0E29482378ACE5002C9536 /* DateTimeUnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUnderlinedTextField.swift; sourceTree = "<group>"; };
+		FC0E294A2378AE9B002C9536 /* DollarUnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarUnderlinedTextField.swift; sourceTree = "<group>"; };
 		FC49ACDE234A3988006560D7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FC49ACE0234A54AA006560D7 /* TransactionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeader.swift; sourceTree = "<group>"; };
 		FC86C4FB22D27B5000932306 /* Cash.Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cash.Track.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +111,8 @@
 			children = (
 				FC05B598234C080700F15A49 /* UnderlinedTextField.swift */,
 				FC05B59A234C083300F15A49 /* TransactionTypeUnderlinedTextField.swift */,
-				FC05B59C234C087300F15A49 /* DateUnderlinedTextField.swift */,
+				FC0E29482378ACE5002C9536 /* DateTimeUnderlinedTextField.swift */,
+				FC0E294A2378AE9B002C9536 /* DollarUnderlinedTextField.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -126,6 +133,8 @@
 				FCD552AD22DC0CCE001582CF /* HomePageView.swift */,
 				FC05B594234BBC1500F15A49 /* NewTransactionViewController.swift */,
 				FC05B596234BBCB900F15A49 /* NewTransactionPageView.swift */,
+				FC0E294423746D71002C9536 /* EditTransactionViewController.swift */,
+				FC0E294223746D22002C9536 /* EditTransactionPageView.swift */,
 				FC1ACF32234A75A6000B8289 /* Cells */,
 			);
 			path = Vies;
@@ -339,17 +348,20 @@
 				FC86C4FF22D27B5000932306 /* AppDelegate.swift in Sources */,
 				FC05B595234BBC1500F15A49 /* NewTransactionViewController.swift in Sources */,
 				FC05B597234BBCB900F15A49 /* NewTransactionPageView.swift in Sources */,
+				FC0E29492378ACE5002C9536 /* DateTimeUnderlinedTextField.swift in Sources */,
 				FC86C53422D27C5C00932306 /* TransactionCell.swift in Sources */,
 				FCD552AE22DC0CCE001582CF /* HomePageView.swift in Sources */,
+				FC0E294B2378AE9B002C9536 /* DollarUnderlinedTextField.swift in Sources */,
 				FC49ACE1234A54AA006560D7 /* TransactionHeader.swift in Sources */,
 				FC05B599234C080700F15A49 /* UnderlinedTextField.swift in Sources */,
 				FC05B59B234C083300F15A49 /* TransactionTypeUnderlinedTextField.swift in Sources */,
 				FCB67BBA22D97BC20096515B /* UIViewControllerBase.swift in Sources */,
 				FCB67BB622D9703B0096515B /* DataStore.swift in Sources */,
 				FC86C53022D27BFD00932306 /* Transaction.swift in Sources */,
+				FC0E294523746D71002C9536 /* EditTransactionViewController.swift in Sources */,
+				FC0E294323746D23002C9536 /* EditTransactionPageView.swift in Sources */,
 				FC49ACDF234A3988006560D7 /* Extensions.swift in Sources */,
 				FCD552AC22DBF866001582CF /* HomeViewController.swift in Sources */,
-				FC05B59D234C087300F15A49 /* DateUnderlinedTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

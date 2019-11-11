@@ -44,13 +44,11 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
         PageView.TransactionCollectionView.reloadData()
     }
     
-//    internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        // go to selected transaction
-//        //        let idForSelectedWallet = Store.shared.WalletData[indexPath.row].WalletId
-////        let walletVc : WalletViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "walletVc") as! WalletViewController
-////        walletVc.setWalletInfo(forId: idForSelectedWallet)
-////        self.navigationController?.pushViewController(walletVc, animated: true)
-//    }
+    internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let editTransactionViewController : EditTransactionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editTransactionViewController") as! EditTransactionViewController
+        editTransactionViewController.setTransactionLocation(at: indexPath)
+        self.navigationController?.pushViewController(editTransactionViewController, animated: true)
+    }
     
     internal func numberOfSections(in collectionView: UICollectionView) -> Int {
         let numberOfSections = DataStore.shared.TransactionsByDate.count

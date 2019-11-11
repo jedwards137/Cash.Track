@@ -1,19 +1,26 @@
 //
-//  NewTransactionViewController.swift
+//  EditTransactionViewController.swift
 //  Cash.Track
 //
-//  Created by Jake Edwards on 10/7/19.
+//  Created by Jake Edwards on 11/7/19.
 //  Copyright © 2019 Big Ahi Software. All rights reserved.
 //
 
 import UIKit
 
-class NewTransactionViewController: UIViewControllerBase {
-    private var PageView = NewTransactionPageView()
+class EditTransactionViewController: UIViewControllerBase {
+    private var PageView = EditTransactionPageView()
+    private var IndexPath : IndexPath!
+        
+    public func setTransactionLocation(at indexPath: IndexPath) {
+        IndexPath = indexPath
+        let transaction = DataStore.shared.getTransactionAt(index: IndexPath)
+        PageView.setTransactionInfo(with: transaction)
+    }
     
     override func setupNavBar() {
         super.setupNavBar()
-        self.title = "New Transaction"
+        self.title = "Edit Transaction"
     }
     
     override func setupPageView() {
@@ -25,7 +32,8 @@ class NewTransactionViewController: UIViewControllerBase {
     }
     
     internal override func setupPageViewChildren() {
-        PageView.SubmitButton.addTarget(self, action: #selector(submitTransaction), for: .touchUpInside)
+        PageView.UpdateButton.addTarget(self, action: #selector(submitTransaction), for: .touchUpInside)
+        PageView.DeleteButton.addTarget(self, action: #selector(deleteTransaction), for: .touchUpInside)
     }
         
     @objc private func submitTransaction() {
@@ -39,8 +47,15 @@ class NewTransactionViewController: UIViewControllerBase {
         let date = PageView.DateTimeField.DatePicker.date
         
         let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
+        DataStore.shared.deleteTransactionAt(index: IndexPath)
         let didAddTransaction = DataStore.shared.addNewTransaction(transactionToAdd)
         if !didAddTransaction { return }
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @objc private func deleteTransaction() {
+        DataStore.shared.deleteTransactionAt(index: IndexPath)
+        self.navigationController?.popViewController(animated: true)
+    }
 }
+
