@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Transaction {
+public class Transaction: Codable {
     private(set) var Name : String
     private(set) var Amount : Double
     private(set) var TransType : TransactionType
@@ -36,7 +36,7 @@ public class Transaction {
     }
 }
 
-public enum TransactionType : String {
+public enum TransactionType : String, Codable {
     case Deposit = "Deposit"
     case Withdrawal = "Withdrawal"
     

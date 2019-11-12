@@ -44,10 +44,10 @@ public class TransactionCell : UICollectionViewCell {
     public func setTransactionInfo(transaction: Transaction) {
         NameLabel.text = transaction.Name
         let amount = transaction.getAdjustedAmount()
-        AmountLabel.text = "\(amount)"
+        AmountLabel.text = amount.round()
         
         let amountIsPositive = amount > 0
-        self.backgroundColor = amountIsPositive ? UIColor(r: 129, g: 232, b: 141) : UIColor(r: 229, g: 126, b: 100)
+        self.backgroundColor = amountIsPositive ? GlobalValues.customGreen : GlobalValues.customRed
     }
     
     private func addSubviews() {

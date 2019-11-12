@@ -17,7 +17,7 @@ class EditTransactionPageView: UIViewBase {
     private(set) var DateTimeField : DateTimeUnderlinedTextField
     private(set) var DeleteButton : UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .red
+        button.backgroundColor = GlobalValues.customRed
         button.layer.cornerRadius = 8
         button.setTitle("Delete", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -26,7 +26,7 @@ class EditTransactionPageView: UIViewBase {
     }()
     private(set) var UpdateButton : UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
+        button.backgroundColor = GlobalValues.customGreen
         button.layer.cornerRadius = 8
         button.setTitle("Update", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -50,7 +50,7 @@ class EditTransactionPageView: UIViewBase {
     public func setTransactionInfo(with transaction: Transaction) {
         TransactionNameField.Field.text = transaction.Name
         TransactionTypeField.Field.text = transaction.TransType.rawValue
-        AmountField.Field.text = "\(transaction.Amount)"
+        AmountField.Field.text = transaction.Amount.round()
         DateTimeField.Field.text = transaction.Date.toReadable(withTimeStyle: .short)
     }
     

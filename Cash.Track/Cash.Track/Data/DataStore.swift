@@ -14,12 +14,12 @@ public class DataStore {
     private(set) var TransactionsByDate : [[Transaction]] = []
     private let TransactionDataKey : String = "transactionData"
     
-    func getTotalForAllTransactions() -> Double {
+    func getTotalForAllTransactions() -> String {
         var total : Double = 0
         for transactionList in TransactionsByDate {
             transactionList.forEach { total += $0.getAdjustedAmount() }
         }
-        return total
+        return total.round()
     }
     
     func getTransactionAt(index: IndexPath) -> Transaction {
@@ -40,11 +40,13 @@ public class DataStore {
                 }
                 TransactionsByDate[i].append(transactionToAdd)
                 sortTransactionGroupsByDate()
+                saveTransactionData()
                 return true
             }
         }
         TransactionsByDate.append([transactionToAdd])
         sortTransactionGroupsByDate()
+        saveTransactionData()
         return true
     }
     
@@ -54,16 +56,25 @@ public class DataStore {
         if needToRemoveSection {
             TransactionsByDate.remove(at: index.row)
         }
+        saveTransactionData()
     }
     
     private func saveTransactionData() {
-//        do {
-//            let encodedTransactions : Data = try NSKeyedArchiver.archivedData(withRootObject: TransactionsByDate, requiringSecureCoding: true)
-//            UserDefaults.standard.set(encodedTransactions, forKey: TransactionDataKey)
-//        } catch {
-//            print("error")
-//        }
-        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(TransactionsByDate) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "transactions")
+        }
+    }
+    
+    private func loadTransactionDate() {
+        if let savedTransactions = UserDefaults.standard.object(forKey: "transactions") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedTransactions = try? decoder.decode([[Transaction]].self, from: savedTransactions) {
+                print(loadedTransactions)
+                TransactionsByDate = loadedTransactions
+            }
+        }
     }
     
     private func sortTransactionGroupsByDate() {
@@ -72,22 +83,6 @@ public class DataStore {
     }
     
     init() {
-        //let encodedStoredTransactionData = UserDefaults.standard.data(forKey: TransactionDataKey)
-//        let hasStoredTransactions = decodedStoredTransactionData?.count ?? 0 > 0
-//        if !hasStoredTransactions {
-//            addDummyData()
-//            return
-//        }
-//        TransactionsByDate = decodedStoredTransactionData as! [[Transaction]]
-        addDummyData()
-    }
-    
-    private func addDummyData() {
-        let transaction1 = Transaction(name: "Paycheck 1", amount: 500, transType: .Deposit, date: Date())
-        let transaction2 = Transaction(name: "Paycheck 2", amount: 750, transType: .Deposit, date: Date())
-        let transaction3 = Transaction(name: "Rent", amount: 750, transType: .Withdrawal, date: Date())
-        let transaction4 = Transaction(name: "Fast Food", amount: 15, transType: .Withdrawal, date: Date())
-        let transactions = [transaction1, transaction2, transaction3, transaction4]
-        transactions.forEach { addNewTransaction($0) }
+        loadTransactionDate()
     }
 }

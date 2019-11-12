@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+extension Double {
+    public func round() -> String {
+        let roundedAmount = String(format:"%.02f", self)
+        return roundedAmount
+    }
+}
+
 extension Date {
     func equaltTo(_ rhs: Date) -> Bool {
         let lhsComponents = self.getComponents()
