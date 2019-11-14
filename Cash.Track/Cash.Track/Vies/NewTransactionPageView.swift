@@ -17,7 +17,7 @@ class NewTransactionPageView: UIViewBase {
     private(set) var DateTimeField : DateTimeUnderlinedTextField
     private(set) var SubmitButton : UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
+        button.backgroundColor = GlobalValues.customGreen
         button.layer.cornerRadius = 8
         button.setTitle("Submit", for: .normal)
         button.setTitleColor(.white, for: .normal)

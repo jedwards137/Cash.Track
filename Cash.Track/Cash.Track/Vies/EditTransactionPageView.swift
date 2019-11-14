@@ -34,6 +34,13 @@ class EditTransactionPageView: UIViewBase {
         return button
     }()
     
+    public func setTransactionInfo(with transaction: Transaction) {
+        TransactionNameField.Field.text = transaction.Name
+        TransactionTypeField.Field.text = transaction.TransType.rawValue
+        AmountField.Field.text = transaction.Amount.round()
+        DateTimeField.Field.text = transaction.Date.toReadable(withTimeStyle: .short)
+    }
+    
     override init() {
         TransactionNameField = UnderlinedTextField(title: "Name", highlightColor: HighlightColor, textAlignment: .left, placeholder: "Transaction #1", underlineColor: UnderlineColor)
         TransactionTypeField = TransactionTypeUnderlinedTextField(title: "Transaction Type", highlightColor: HighlightColor, textAlignment: .left, placeholder: "Deposit", underlineColor: UnderlineColor)
@@ -45,13 +52,6 @@ class EditTransactionPageView: UIViewBase {
         self.backgroundColor = .white
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(resignFirstResponderHandler))
         self.addGestureRecognizer(tapRecognizer)
-    }
-    
-    public func setTransactionInfo(with transaction: Transaction) {
-        TransactionNameField.Field.text = transaction.Name
-        TransactionTypeField.Field.text = transaction.TransType.rawValue
-        AmountField.Field.text = transaction.Amount.round()
-        DateTimeField.Field.text = transaction.Date.toReadable(withTimeStyle: .short)
     }
     
     @objc private func resignFirstResponderHandler() {

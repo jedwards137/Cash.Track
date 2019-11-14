@@ -9,7 +9,7 @@
 import UIKit
 
 class HomePageView : UIViewBase {
-    public let TotalAmountLabel : UILabel = {
+    private(set) var TotalAmountLabel : UILabel = {
         let label = UILabel()
         label.text = "$0"
         label.textColor = .black
@@ -18,7 +18,7 @@ class HomePageView : UIViewBase {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    public let TransactionsLabel : UILabel = {
+    private(set) var TransactionsLabel : UILabel = {
         let label = UILabel()
         label.text = "Transactions"
         label.textColor = .black
@@ -30,12 +30,13 @@ class HomePageView : UIViewBase {
     private(set) var NewTransactionButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("+", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12.5
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    public let TransactionCollectionView : UICollectionView = {
+    private(set) var TransactionCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -68,7 +69,8 @@ class HomePageView : UIViewBase {
         TransactionsLabel.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
         
         NewTransactionButton.setTopAnchor(to: TransactionsLabel.topAnchor)
-        NewTransactionButton.setBottomAnchor(to: TransactionsLabel.bottomAnchor)
+        NewTransactionButton.setHeightAnchor(to: 25)
+        NewTransactionButton.setWidthAnchor(to: 25)
         NewTransactionButton.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*EdgePadding)
         
         TransactionCollectionView.setTopAnchor(to: NewTransactionButton.bottomAnchor, withPadding: EdgePadding)
