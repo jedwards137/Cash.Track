@@ -13,9 +13,15 @@ class TransactionTypeUnderlinedTextField: UnderlinedTextField, UIPickerViewDeleg
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Field.addTarget(self, action: #selector(transactionTypeEditingDidBegin), for: .editingDidBegin)
         TransactionTypePickerView.dataSource = self
         TransactionTypePickerView.delegate = self
+    }
+    
+    override func textFieldEditingDidBegin(sender: UITextField) {
+        Underline.backgroundColor = HighlightColor
+        let toolBar = createToolbar()
+        sender.inputAccessoryView = toolBar
+        sender.inputView = TransactionTypePickerView
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -29,13 +35,6 @@ class TransactionTypeUnderlinedTextField: UnderlinedTextField, UIPickerViewDeleg
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let titleForRow = TransactionType.allValues[row]
         return String(describing: titleForRow)
-    }
-    
-    @objc private func transactionTypeEditingDidBegin(sender: UITextField) {
-        Underline.backgroundColor = HighlightColor
-        let toolBar = createToolbar()
-        sender.inputAccessoryView = toolBar
-        sender.inputView = TransactionTypePickerView
     }
     
     private func createToolbar() -> UIToolbar {

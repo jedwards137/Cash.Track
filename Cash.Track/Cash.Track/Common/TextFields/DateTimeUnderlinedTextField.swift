@@ -10,18 +10,13 @@ import Foundation
 import UIKit
 
 class DateTimeUnderlinedTextField: UnderlinedTextField {
-    internal let DatePicker = UIDatePicker()
+    private(set) var DatePicker = UIDatePicker()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Field.addTarget(self, action: #selector(timeEditingDidBegin), for: .editingDidBegin)
     }
     
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func timeEditingDidBegin(sender: UITextField) {
+    override func textFieldEditingDidBegin(sender: UITextField) {
         Underline.backgroundColor = HighlightColor
         DatePicker.datePickerMode = .dateAndTime
         let toolBar = createToolbar()
@@ -47,5 +42,9 @@ class DateTimeUnderlinedTextField: UnderlinedTextField {
     
     @objc private func datePickerCancel() {
         self.endEditing(true)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

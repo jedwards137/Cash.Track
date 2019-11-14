@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class UnderlinedTextField: UIView {
-    internal var Title: UILabel = {
+class UnderlinedTextField : UIView {
+    private var Title: UILabel = {
         let label = UILabel()
         label.font = label.font.withSize(12)
         label.textColor = .black
@@ -18,7 +18,7 @@ class UnderlinedTextField: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    internal var Field: UITextField = {
+    private(set) var Field: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.textAlignment = .center
@@ -28,7 +28,7 @@ class UnderlinedTextField: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-    internal var Underline: UIView = {
+    private(set) var Underline: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = .gray
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +114,7 @@ class UnderlinedTextField: UIView {
         Underline.setTrailingAnchor(to: self.trailingAnchor)
     }
     
-    @objc private func textFieldEditingDidBegin(sender: UITextField) {
+    @objc internal func textFieldEditingDidBegin(sender: UITextField) {
         Underline.backgroundColor = HighlightColor
     }
     
