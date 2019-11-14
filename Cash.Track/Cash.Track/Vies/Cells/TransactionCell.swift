@@ -30,6 +30,15 @@ public class TransactionCell : UICollectionViewCell {
         return label
     }()
     
+    public func setTransactionInfo(transaction: Transaction) {
+        NameLabel.text = transaction.Name
+        let amount = transaction.getAdjustedAmount()
+        AmountLabel.text = amount.round()
+        
+        let amountIsPositive = amount > 0
+        self.backgroundColor = amountIsPositive ? GlobalValues.customGreen : GlobalValues.customRed
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,15 +48,6 @@ public class TransactionCell : UICollectionViewCell {
         
         addSubviews()
         anchorSubviews()
-    }
-    
-    public func setTransactionInfo(transaction: Transaction) {
-        NameLabel.text = transaction.Name
-        let amount = transaction.getAdjustedAmount()
-        AmountLabel.text = amount.round()
-        
-        let amountIsPositive = amount > 0
-        self.backgroundColor = amountIsPositive ? GlobalValues.customGreen : GlobalValues.customRed
     }
     
     private func addSubviews() {
