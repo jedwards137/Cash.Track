@@ -11,52 +11,74 @@ import Foundation
 public class DataStore {
     static let shared = DataStore()
     
-    private(set) var TransactionsByDate : [[Transaction]] = []
+    private var TransactionsByDate : [[Transaction]] = [] {
+        didSet {
+            cleanTransactionDate()
+            sortTransactionGroupsByDate()
+            saveTransactionData()
+        }
+    }
     private let TransactionDataKey : String = "transactionData"
     
-    func getTotalForAllTransactions() -> String {
+    public func getTotalForAllTransactions() -> String {
         var total : Double = 0
-        for transactionList in TransactionsByDate {
-            transactionList.forEach { total += $0.getAdjustedAmount() }
+        for transactionGroup in TransactionsByDate {
+            transactionGroup.forEach { total += $0.getAdjustedAmount() }
         }
-        return total.round()
+        let roundedTotal = total.round()
+        return roundedTotal
     }
     
-    func getTransactionAt(index: IndexPath) -> Transaction {
+    public func getNumberOfTransactionGroups() -> Int {
+        let numberOfGroups = TransactionsByDate.count
+        return numberOfGroups
+    }
+    
+    public func getNumberOfTransactionsInGroup(index: Int) -> Int {
+        let numberOfTransactionsInGroup = TransactionsByDate[index].count
+        return numberOfTransactionsInGroup
+    }
+    
+    public func getTransactionAt(index: IndexPath) -> Transaction {
         let transaction = TransactionsByDate[index.section][index.row]
         return transaction
     }
     
-    func addNewTransaction(_ transactionToAdd: Transaction) -> Bool {
-        for i in 0..<TransactionsByDate.count {
-            let transactionGroup = TransactionsByDate[i]
-            let dateForGroup = transactionGroup.first!.Date
-            let isCorrectTransactionGroupToAddIn = dateForGroup.equaltTo(transactionToAdd.Date)
-            if isCorrectTransactionGroupToAddIn {
-                for transaction in transactionGroup {
-                    if transaction.Date.extendedEqualTo(transactionToAdd.Date) && transaction.Name == transactionToAdd.Name {
-                        return false
+    public func addNewTransaction(_ transactionToAdd: Transaction) {
+        var tempTransactions = TransactionsByDate
+        let transactionGroupsExist = tempTransactions.count > 0
+        if transactionGroupsExist {
+            for i in 0..<tempTransactions.count {
+                let transactionsExistInGroup = tempTransactions[i].count > 0
+                if transactionsExistInGroup {
+                    let dateForGroup = tempTransactions[i].first!.Date
+                    let isCorrectTransactionGroupToAddIn = dateForGroup.equaltTo(transactionToAdd.Date)
+                    if isCorrectTransactionGroupToAddIn {
+                        tempTransactions[i].append(transactionToAdd)
+                        TransactionsByDate = tempTransactions
                     }
                 }
-                TransactionsByDate[i].append(transactionToAdd)
-                sortTransactionGroupsByDate()
-                saveTransactionData()
-                return true
             }
         }
-        TransactionsByDate.append([transactionToAdd])
-        sortTransactionGroupsByDate()
-        saveTransactionData()
-        return true
+        else {
+            tempTransactions.append([transactionToAdd])
+            TransactionsByDate = tempTransactions
+        }
     }
     
-    func deleteTransactionAt(index: IndexPath) {
+    public func deleteTransactionAt(index: IndexPath) {
         TransactionsByDate[index.section].remove(at: index.row)
-        let needToRemoveSection = TransactionsByDate[index.section].count < 1
-        if needToRemoveSection {
-            TransactionsByDate.remove(at: index.row)
+    }
+    
+    init() {
+        loadTransactionData()
+        //addDummyData()
+        for group in TransactionsByDate {
+            for trn in group {
+                print(trn.Name)
+            }
         }
-        saveTransactionData()
+        //addDummyData()
     }
     
     private func saveTransactionData() {
@@ -67,22 +89,49 @@ public class DataStore {
         }
     }
     
-    private func loadTransactionDate() {
+    private func loadTransactionData() {
         if let savedTransactions = UserDefaults.standard.object(forKey: "transactions") as? Data {
             let decoder = JSONDecoder()
             if let loadedTransactions = try? decoder.decode([[Transaction]].self, from: savedTransactions) {
-                print(loadedTransactions)
                 TransactionsByDate = loadedTransactions
             }
         }
     }
     
-    private func sortTransactionGroupsByDate() {
-        let sortedTransactions = TransactionsByDate.sorted(by: { $0.first!.Date.compare($1.first!.Date) == .orderedDescending })
-        TransactionsByDate = sortedTransactions
+    private func cleanTransactionDate() {
+        if TransactionsByDate.count == 0 { return }
+        var i = 0
+        while i < TransactionsByDate.count {
+            if TransactionsByDate[i].count == 0 {
+                TransactionsByDate.remove(at: i)
+                continue
+            }
+            i += 1
+        }
     }
     
-    init() {
-        loadTransactionDate()
+    private func sortTransactionGroupsByDate() {
+        if TransactionsByDate.count > 1 {
+            var sortedGroups = TransactionsByDate.sorted(by: { $0.first!.Date.compare($1.first!.Date) == .orderedDescending
+            })
+            for i in 0..<sortedGroups.count {
+                if sortedGroups[i].count > 1 {
+                    let sortedTransactions = sortedGroups[i].sorted(by: {
+                        $0.Date.compare($1.Date) == .orderedDescending
+                    })
+                    sortedGroups[i] = sortedTransactions
+                }
+            }
+            TransactionsByDate = sortedGroups
+        }
+    }
+    
+    private func addDummyData() {
+        let transaction1 = Transaction(name: "Paycheck 1", amount: 500.78, transType: .Deposit, date: Date())
+        let transaction2 = Transaction(name: "Paycheck 2", amount: 750, transType: .Deposit, date: Date())
+        let transaction3 = Transaction(name: "Rent", amount: 750, transType: .Withdrawal, date: Date())
+        let transaction4 = Transaction(name: "Fast Food", amount: 15.88, transType: .Withdrawal, date: Date())
+        let transactions = [transaction1, transaction2, transaction3, transaction4]
+        transactions.forEach { addNewTransaction($0) }
     }
 }
