@@ -14,7 +14,7 @@ class EditTransactionViewController: UIViewControllerBase {
         
     public func setTransactionLocation(at indexPath: IndexPath) {
         IndexPath = indexPath
-        let transaction = DataStore.shared.getTransactionAt(index: IndexPath)
+        let transaction = DataStore.shared.getTransactionAt(indexPath: IndexPath)
         PageView.setTransactionInfo(with: transaction)
     }
     
@@ -23,7 +23,7 @@ class EditTransactionViewController: UIViewControllerBase {
         self.title = "Edit Transaction"
     }
     
-    override func setupPageView() {
+    internal override func setupPageView() {
         self.view.addSubview(PageView)
         PageView.setTopAnchor(to: self.view.topAnchor)
         PageView.setBottomAnchor(to: self.view.bottomAnchor)
@@ -48,8 +48,7 @@ class EditTransactionViewController: UIViewControllerBase {
         
         let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
         DataStore.shared.deleteTransactionAt(index: IndexPath)
-        let didAddTransaction = DataStore.shared.addNewTransaction(transactionToAdd)
-        if !didAddTransaction { return }
+        DataStore.shared.addNewTransaction(transactionToAdd)
         self.navigationController?.popViewController(animated: true)
     }
     

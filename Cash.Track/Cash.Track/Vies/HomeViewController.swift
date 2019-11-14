@@ -51,12 +51,12 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
     }
     
     internal func numberOfSections(in collectionView: UICollectionView) -> Int {
-        let numberOfSections = DataStore.shared.TransactionsByDate.count
+        let numberOfSections = DataStore.shared.getNumberOfTransactionGroups()
         return numberOfSections
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfTransactionsInSection = DataStore.shared.TransactionsByDate[section].count
+        let numberOfTransactionsInSection = DataStore.shared.getNumberOfTransactionsInGroup(index: section)
         return numberOfTransactionsInSection
     }
     
@@ -71,13 +71,13 @@ class HomeViewController: UIViewControllerBase, UICollectionViewDelegateFlowLayo
         String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier:
             PageView.TransactionHeaderId, for: indexPath) as! TransactionHeader
-        let sectionDate = DataStore.shared.TransactionsByDate[indexPath.section][0].Date
-        header.setSectionDate(to: sectionDate)
+        let dateForSection = DataStore.shared.getDateForTransactionInGroup(index: indexPath.section)
+        header.setSectionDate(to: dateForSection)
         return header
     }
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let transactionForCell = DataStore.shared.TransactionsByDate[indexPath.section][indexPath.row]
+        let transactionForCell = DataStore.shared.getTransactionAt(indexPath: indexPath)
         let transactionCell = PageView.TransactionCollectionView.dequeueReusableCell(withReuseIdentifier: PageView.TransactionCellId, for: indexPath) as! TransactionCell
         transactionCell.setTransactionInfo(transaction: transactionForCell)
         return transactionCell

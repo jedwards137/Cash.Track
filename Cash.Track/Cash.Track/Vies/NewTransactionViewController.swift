@@ -16,7 +16,7 @@ class NewTransactionViewController: UIViewControllerBase {
         self.title = "New Transaction"
     }
     
-    override func setupPageView() {
+    internal override func setupPageView() {
         self.view.addSubview(PageView)
         PageView.setTopAnchor(to: self.view.topAnchor)
         PageView.setBottomAnchor(to: self.view.bottomAnchor)
@@ -39,8 +39,7 @@ class NewTransactionViewController: UIViewControllerBase {
         let date = PageView.DateTimeField.DatePicker.date
         
         let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
-        let didAddTransaction = DataStore.shared.addNewTransaction(transactionToAdd)
-        if !didAddTransaction { return }
+        DataStore.shared.addNewTransaction(transactionToAdd)
         self.navigationController?.popViewController(animated: true)
     }
 }
