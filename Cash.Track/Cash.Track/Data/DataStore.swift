@@ -13,8 +13,6 @@ public class DataStore {
     
     private var TransactionsByDate : [[Transaction]] = [] {
         didSet {
-            cleanTransactionDate()
-            sortTransactionGroupsByDate()
             saveTransactionData()
         }
     }
@@ -39,46 +37,46 @@ public class DataStore {
         return numberOfTransactionsInGroup
     }
     
-    public func getTransactionAt(index: IndexPath) -> Transaction {
-        let transaction = TransactionsByDate[index.section][index.row]
+    public func getTransactionAt(indexPath: IndexPath) -> Transaction {
+        let transaction = TransactionsByDate[indexPath.section][indexPath.row]
         return transaction
+    }
+    
+    public func getDateForTransactionInGroup(index: Int) -> Date {
+        let dateForGroup = TransactionsByDate[index].first!.Date
+        return dateForGroup
     }
     
     public func addNewTransaction(_ transactionToAdd: Transaction) {
         var tempTransactions = TransactionsByDate
-        let transactionGroupsExist = tempTransactions.count > 0
-        if transactionGroupsExist {
-            for i in 0..<tempTransactions.count {
-                let transactionsExistInGroup = tempTransactions[i].count > 0
-                if transactionsExistInGroup {
-                    let dateForGroup = tempTransactions[i].first!.Date
-                    let isCorrectTransactionGroupToAddIn = dateForGroup.equaltTo(transactionToAdd.Date)
-                    if isCorrectTransactionGroupToAddIn {
-                        tempTransactions[i].append(transactionToAdd)
-                        TransactionsByDate = tempTransactions
-                    }
-                }
+        for i in 0..<tempTransactions.count {
+            let dateForGroup = tempTransactions[i].first!.Date
+            let isCorrectTransactionGroupToAddIn = dateForGroup.equaltTo(transactionToAdd.Date)
+            if isCorrectTransactionGroupToAddIn {
+                tempTransactions[i].append(transactionToAdd)
+                overwriteWithTempData(tempTransactions)
+                return
             }
         }
-        else {
-            tempTransactions.append([transactionToAdd])
-            TransactionsByDate = tempTransactions
-        }
+        tempTransactions.append([transactionToAdd])
+        overwriteWithTempData(tempTransactions)
     }
     
     public func deleteTransactionAt(index: IndexPath) {
-        TransactionsByDate[index.section].remove(at: index.row)
+        var tempTransactions = TransactionsByDate
+        tempTransactions[index.section].remove(at: index.row)
+        overwriteWithTempData(tempTransactions)
     }
     
     init() {
         loadTransactionData()
         //addDummyData()
-        for group in TransactionsByDate {
-            for trn in group {
-                print(trn.Name)
-            }
-        }
-        //addDummyData()
+    }
+    
+    private func overwriteWithTempData(_ tempTransactions: [[Transaction]]) {
+        var tempTransactionData = cleanTransactionData(for: tempTransactions)
+        tempTransactionData = sortTransactionGroupsByDate(for: tempTransactionData)
+        TransactionsByDate = tempTransactionData
     }
     
     private func saveTransactionData() {
@@ -98,32 +96,31 @@ public class DataStore {
         }
     }
     
-    private func cleanTransactionDate() {
-        if TransactionsByDate.count == 0 { return }
+    private func cleanTransactionData(for transactions: [[Transaction]]) -> [[Transaction]] {
+        var tempTransactions = transactions
+        if tempTransactions.count == 0 { return tempTransactions}
         var i = 0
-        while i < TransactionsByDate.count {
-            if TransactionsByDate[i].count == 0 {
-                TransactionsByDate.remove(at: i)
+        while i < tempTransactions.count {
+            if tempTransactions[i].count == 0 {
+                tempTransactions.remove(at: i)
                 continue
             }
             i += 1
         }
+        return tempTransactions
     }
     
-    private func sortTransactionGroupsByDate() {
-        if TransactionsByDate.count > 1 {
-            var sortedGroups = TransactionsByDate.sorted(by: { $0.first!.Date.compare($1.first!.Date) == .orderedDescending
+    private func sortTransactionGroupsByDate(for transactions: [[Transaction]]) -> [[Transaction]] {
+        var tempTransactions = transactions
+        tempTransactions = tempTransactions.sorted(by: { $0.first!.Date.compare($1.first!.Date) == .orderedDescending
+        })
+        for i in 0..<tempTransactions.count {
+            let sortedTransactions = tempTransactions[i].sorted(by: {
+                $0.Date.compare($1.Date) == .orderedDescending
             })
-            for i in 0..<sortedGroups.count {
-                if sortedGroups[i].count > 1 {
-                    let sortedTransactions = sortedGroups[i].sorted(by: {
-                        $0.Date.compare($1.Date) == .orderedDescending
-                    })
-                    sortedGroups[i] = sortedTransactions
-                }
-            }
-            TransactionsByDate = sortedGroups
+            tempTransactions[i] = sortedTransactions
         }
+        return tempTransactions
     }
     
     private func addDummyData() {
