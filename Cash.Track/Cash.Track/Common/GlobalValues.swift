@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class GlobalValues {
-    static var customGreen = UIColor(r: 129, g: 232, b: 141)
-    static var customRed =  UIColor(r: 229, g: 126, b: 100)
+    static let customGreen = UIColor(r: 129, g: 232, b: 141)
+    static let customRed =  UIColor(r: 229, g: 126, b: 100)
+    static let HighlightColor : UIColor = .black
+    static let UnderlineColor : UIColor = .lightGray
 }
