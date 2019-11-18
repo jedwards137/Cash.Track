@@ -12,17 +12,19 @@ public class Transaction: Codable {
     private(set) var Name : String
     private(set) var Amount : Double
     private(set) var TransType : TransactionType
+    private(set) var Category : String
     private(set) var Date : Date
     
-    public init(name: String, amount: Double, transType: TransactionType, date: Date) {
-        Name = name
-        Amount = amount
-        TransType = transType
-        Date = date
+    public init(name: String, amount: Double, transType: TransactionType, category: String, date: Date) {
+        self.Name = name
+        self.Amount = amount
+        self.TransType = transType
+        self.Category = category
+        self.Date = date
     }
     
     public func getAdjustedAmount() -> Double {
-        let adjustedAmount = TransType == TransactionType.Deposit ? Amount : Amount * -1
+        let adjustedAmount = self.TransType == TransactionType.Deposit ? Amount : Amount * -1
         return adjustedAmount
     }
     
@@ -30,8 +32,9 @@ public class Transaction: Codable {
         let namesAreEqual = self.Name == rhs.Name
         let amountsAreEqual = self.Amount == rhs.Amount
         let transTypeAreEqual = self.TransType == rhs.TransType
+        let categoriesAreEqual = self.Category == rhs.Category
         let datesAreEqual = self.Date.extendedEqualTo(rhs.Date)
-        let bothAreEqual = namesAreEqual && amountsAreEqual && transTypeAreEqual && datesAreEqual
+        let bothAreEqual = namesAreEqual && amountsAreEqual && transTypeAreEqual && categoriesAreEqual && datesAreEqual
         return bothAreEqual
     }
 }
