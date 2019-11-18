@@ -30,6 +30,8 @@ public class UIViewControllerBase : UIViewController, UIViewControllerProtocol {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+        let attrs = [ NSAttributedString.Key.foregroundColor: UIColor.black ]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = attrs
     }
     
     func setupPageView() {

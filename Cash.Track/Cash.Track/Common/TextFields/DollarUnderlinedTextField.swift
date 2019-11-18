@@ -30,6 +30,7 @@ class DollarUnderlinedTextField: UIView {
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.textAlignment = .center
+        textField.textColor = .black
         textField.attributedPlaceholder = NSAttributedString(string: "field", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         textField.addTarget(self, action: #selector(textFieldEditingDidBegin), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(textFieldEditingDidEnd), for: .editingDidEnd)
