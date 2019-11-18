@@ -124,10 +124,10 @@ public class DataStore {
     }
     
     private func addDummyData() {
-        let transaction1 = Transaction(name: "Paycheck 1", amount: 500.78, transType: .Deposit, date: Date())
-        let transaction2 = Transaction(name: "Paycheck 2", amount: 750, transType: .Deposit, date: Date())
-        let transaction3 = Transaction(name: "Rent", amount: 750, transType: .Withdrawal, date: Date())
-        let transaction4 = Transaction(name: "Fast Food", amount: 15.88, transType: .Withdrawal, date: Date())
+        let transaction1 = Transaction(name: "Paycheck 1", amount: 500.78, transType: .Deposit, category: "Paycheck", date: Date())
+        let transaction2 = Transaction(name: "Paycheck 2", amount: 750, transType: .Deposit, category: "Paycheck", date: Date())
+        let transaction3 = Transaction(name: "Rent", amount: 750, transType: .Withdrawal, category: "Rent", date: Date())
+        let transaction4 = Transaction(name: "Fast Food", amount: 15.88, transType: .Withdrawal, category: "Food", date: Date())
         let transactions = [transaction1, transaction2, transaction3, transaction4]
         transactions.forEach { addNewTransaction($0) }
     }

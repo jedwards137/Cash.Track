@@ -33,12 +33,13 @@ class NewTransactionViewController: UIViewControllerBase {
         if !allValuesExist { return }
         
         let name = PageView.TransactionNameField.getText()
+        let category = PageView.TransactionCategoryField.getText()
         let amount = PageView.AmountField.getDouble()
         let transactionType = PageView.TransactionTypeField.getText()
         let transactionTypeEnum = TransactionType(rawValue: transactionType)!
         let date = PageView.DateTimeField.DatePicker.date
         
-        let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, date: date)
+        let transactionToAdd = Transaction(name: name, amount: amount, transType: transactionTypeEnum, category: category, date: date)
         DataStore.shared.addNewTransaction(transactionToAdd)
         self.navigationController?.popViewController(animated: true)
     }
