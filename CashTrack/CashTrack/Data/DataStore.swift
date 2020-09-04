@@ -38,6 +38,10 @@ public class DataStore {
         self.CurrentMonth += 1
     }
     
+    public func updateTransactionWith(_ newName: String, _ newAmount: Double, _ newDate: Date, forTransactionIndex transactionIndex: Int, forBudgetIndex budgetIndex: Int) {
+        self.BudgetList[budgetIndex].updateTransactionWith(newName, newAmount, newDate, forTransactionIndex: transactionIndex)
+    }
+    
     public func addNewBudget(_ budget: Budget) {
         self.BudgetList.append(budget)
     }

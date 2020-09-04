@@ -18,4 +18,10 @@ public class Transaction {
         self.Amount = amount
         self.Date = date
     }
+    
+    public func updateValuesWith(_ newName: String, _ newAmount: Double, _ newDate: Date) {
+        self.Name = newName
+        self.Amount = newAmount
+        self.Date = newDate
+    }
 }

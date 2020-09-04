@@ -71,4 +71,8 @@ public class Budget {
     public func deleteTransaction(at index: Int) {
         self.TransactionList.remove(at: index)
     }
+    
+    public func updateTransactionWith(_ newName: String, _ newAmount: Double, _ newDate: Date, forTransactionIndex index: Int) {
+        self.TransactionList[index].updateValuesWith(newName, newAmount, newDate)
+    }
 }

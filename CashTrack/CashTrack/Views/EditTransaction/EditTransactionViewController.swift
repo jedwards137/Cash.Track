@@ -41,16 +41,16 @@ class EditTransactionViewController: UIViewControllerBase {
     }
     
     @objc private func updateTransactionAndPop() {
-//        let allValuesExist = PageView.BudgetNameField.hasText() && PageView.MonthlyAllocationField.hasText()
-//        if !allValuesExist { return }
-//
-//        let name = PageView.BudgetNameField.getText()
-//        let monthlyAllocation = PageView.MonthlyAllocationField.getDouble()
-//        let previousPot = PageView.PreviousPotField.getDouble()
-//
-//        DataStore.shared.updateTransaction()
-//
-//        self.navigationController?.popViewController(animated: true)
+        let allValuesExist = PageView.NameField.hasText() && PageView.AmountField.hasDouble() && PageView.DateField.hasText()
+        if !allValuesExist { return }
+        
+        let newName = PageView.NameField.getText()
+        let newAmount = PageView.AmountField.getDouble()
+        let newDate = PageView.DateField.DatePicker.date
+        
+        DataStore.shared.updateTransactionWith(newName, newAmount, newDate, forTransactionIndex: self.TransactionIndex, forBudgetIndex: self.BudgetIndex)
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func deleteTransactionAndPop() {
