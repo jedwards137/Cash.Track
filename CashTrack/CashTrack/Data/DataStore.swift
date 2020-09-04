@@ -88,17 +88,8 @@ public class DataStore {
         return currentPot
     }
     
-//    public func getTransactionsForBudgetForCurrentMonth(budgetName: String) -> [Transaction] {
-//        let transactionsForThisBudget = self.TransactionList.filter({ $0.BudgetName == budgetName && $0.Date.getComponents()["month"] == self.CurrentMonth })
-//        return transactionsForThisBudget
-//    }
-//
-//    public func getTransaction(at index: Int) -> Transaction {
-//        let transactionForIndex = self.TransactionList[index]
-//        return transactionForIndex
-//    }
-//
-//    public func deleteTransaction(at index: Int) {
-//        self.TransactionList.remove(at: index)
-//    }
+    public func getTotalRemainingForAllBudgets() -> Double {
+        let totalRemainingForAllBudgets = getTotalAllocatedForAllBudgets() - getTotalSpentForAllBudgets()
+        return totalRemainingForAllBudgets
+    }
 }
