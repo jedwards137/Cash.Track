@@ -9,84 +9,94 @@
 import UIKit
 
 class BudgetsPageView: UIViewBase {
-    private var PreviousPotView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .lightGray
-        view.layer.cornerRadius = 8
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let OverviewTitle: UILabel = {
+        let label = UILabel()
+        label.text = "OVERVIEW"
+        label.textColor = .black
+        label.backgroundColor = .clear
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.TitleSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
-    private let CurrentPotTitleLabel: UILabel = {
+    private(set) var CurrentPotLabel: UILabel = {
         let label = UILabel()
         label.text = "Current Pot"
-        label.textColor = .black
-        label.textAlignment = .right
+        label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = label.font.withSize(13)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private(set) var PreviousPotAmountLabel: UILabel = {
+    private(set) var CurrentPotAmount: UILabel = {
         let label = UILabel()
         label.text = "$0.00"
-        label.textColor = .black
-        label.textAlignment = .right
+        label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 34)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private var MonthlyAllocationView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .lightGray
-        view.layer.cornerRadius = 8
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let CashFlowTitle: UILabel = {
+        let label = UILabel()
+        label.text = "CASH FLOW"
+        label.textColor = .black
+        label.backgroundColor = .clear
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.TitleSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
-    private let MonthlyAllocationTitleLabel: UILabel = {
+    private(set) var AllocatedLabel: UILabel = {
         let label = UILabel()
         label.text = "Allocated"
-        label.textColor = .black
-        label.textAlignment = .right
+        label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = label.font.withSize(13)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private(set) var MonthlyAllocationAmountLabel: UILabel = {
+    private(set) var AllocatedAmount: UILabel = {
         let label = UILabel()
         label.text = "$0.00"
-        label.textColor = .black
-        label.textAlignment = .right
+        label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private var MonthlySpentView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .lightGray
-        view.layer.cornerRadius = 8
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    private let MonthlySpentTitleLabel: UILabel = {
+    private let SpentLabel: UILabel = {
         let label = UILabel()
         label.text = "Spent"
-        label.textColor = .black
-        label.textAlignment = .right
+        label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = label.font.withSize(13)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private(set) var MonthlySpentAmountLabel: UILabel = {
+    private(set) var SpentAmount: UILabel = {
         let label = UILabel()
         label.text = "$0.00"
-        label.textColor = .black
+        label.textColor = .lightGray
+        label.backgroundColor = .clear
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private(set) var NetAmount: UILabel = {
+        let label = UILabel()
+        label.text = "$0.00"
+        label.textColor = .blue
         label.textAlignment = .right
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let BudgetsTitle: UILabel = {
+        let label = UILabel()
+        label.text = "BUDGETS"
+        label.textColor = .black
+        label.backgroundColor = .clear
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.TitleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -106,58 +116,56 @@ class BudgetsPageView: UIViewBase {
     }
     
     internal override func addSubviews() {
-        let subviews = [self.PreviousPotView, self.CurrentPotTitleLabel, self.PreviousPotAmountLabel, self.MonthlySpentView, self.MonthlySpentTitleLabel, self.MonthlySpentAmountLabel, self.MonthlyAllocationView, self.MonthlyAllocationTitleLabel, self.MonthlyAllocationAmountLabel, self.BudgetsCollectionView]
+        let subviews = [self.OverviewTitle, self.CurrentPotLabel, self.CurrentPotAmount, self.CashFlowTitle, self.AllocatedLabel, self.AllocatedAmount, self.SpentLabel, self.SpentAmount, self.NetAmount, self.BudgetsTitle, self.BudgetsCollectionView]
         subviews.forEach { subview in self.addSubview(subview) }
     }
     
     internal override func anchorSubviews() {
-        anchorPreviousPotView()
-        anchorSpentView()
-        anchorMonthlyAllocationView()
-        
-        self.BudgetsCollectionView.setTopAnchor(to: self.MonthlySpentView.bottomAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.BudgetsCollectionView.setBottomAnchor(to: self.bottomAnchor)
-        self.BudgetsCollectionView.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.BudgetsCollectionView.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*UIValues.EdgePadding)
+        anchorOverviewSection()
+        anchorCashflowSection()
+        anchorBudgetsSection()
     }
     
-    private func anchorPreviousPotView() {
-        self.PreviousPotView.setTopAnchor(to: self.topAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.PreviousPotView.setHeightAnchor(to: 115)
-        self.PreviousPotView.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.PreviousPotView.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*UIValues.EdgePadding)
+    private func anchorOverviewSection() {
+        self.OverviewTitle.setTopAnchor(to: self.topAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.OverviewTitle.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
         
-        self.CurrentPotTitleLabel.setTopAnchor(to: self.PreviousPotView.topAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.CurrentPotTitleLabel.setLeadingAnchor(to: self.PreviousPotView.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.CurrentPotLabel.setTopAnchor(to: self.OverviewTitle.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.CurrentPotLabel.setLeadingAnchor(to: self.OverviewTitle.leadingAnchor)
         
-        self.PreviousPotAmountLabel.setBottomAnchor(to: self.PreviousPotView.bottomAnchor, withPadding: -2*UIValues.EdgePadding)
-        self.PreviousPotAmountLabel.setLeadingAnchor(to: self.PreviousPotView.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.CurrentPotAmount.setTopAnchor(to: self.OverviewTitle.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.CurrentPotAmount.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*UIValues.EdgePadding)
     }
     
-    private func anchorSpentView() {
-        self.MonthlySpentView.setTopAnchor(to: self.PreviousPotView.bottomAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.MonthlySpentView.setHeightAnchor(to: 95)
-        self.MonthlySpentView.setLeadingAnchor(to: self.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.MonthlySpentView.setTrailingAnchor(to: self.centerXAnchor, withPadding: -UIValues.EdgePadding)
+    private func anchorCashflowSection() {
+        self.CashFlowTitle.setTopAnchor(to: self.CurrentPotLabel.bottomAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.CashFlowTitle.setLeadingAnchor(to: self.OverviewTitle.leadingAnchor)
         
-        self.MonthlySpentTitleLabel.setTopAnchor(to: self.MonthlySpentView.topAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.MonthlySpentTitleLabel.setLeadingAnchor(to: self.MonthlySpentView.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.AllocatedLabel.setTopAnchor(to: self.CashFlowTitle.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.AllocatedLabel.setLeadingAnchor(to: self.OverviewTitle.leadingAnchor)
         
-        self.MonthlySpentAmountLabel.setBottomAnchor(to: self.MonthlySpentView.bottomAnchor, withPadding: -2*UIValues.EdgePadding)
-        self.MonthlySpentAmountLabel.setLeadingAnchor(to: self.MonthlySpentView.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.AllocatedAmount.setTopAnchor(to: self.CashFlowTitle.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.AllocatedAmount.setTrailingAnchor(to: self.centerXAnchor)
+        
+        self.SpentLabel.setTopAnchor(to: self.AllocatedLabel.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.SpentLabel.setLeadingAnchor(to: self.OverviewTitle.leadingAnchor)
+        
+        self.SpentAmount.setTopAnchor(to: self.AllocatedLabel.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.SpentAmount.setTrailingAnchor(to: self.centerXAnchor)
+        
+        self.NetAmount.setTopAnchor(to: self.AllocatedLabel.topAnchor)
+        self.NetAmount.setBottomAnchor(to: self.SpentLabel.bottomAnchor)
+        self.NetAmount.setTrailingAnchor(to: self.CurrentPotAmount.trailingAnchor)
     }
     
-    private func anchorMonthlyAllocationView() {
-        self.MonthlyAllocationView.setTopAnchor(to: self.PreviousPotView.bottomAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.MonthlyAllocationView.setHeightAnchor(to: 95)
-        self.MonthlyAllocationView.setLeadingAnchor(to: self.centerXAnchor, withPadding: UIValues.EdgePadding)
-        self.MonthlyAllocationView.setTrailingAnchor(to: self.trailingAnchor, withPadding: -2*UIValues.EdgePadding)
+    private func anchorBudgetsSection() {
+        self.BudgetsTitle.setTopAnchor(to: self.SpentLabel.bottomAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.BudgetsTitle.setLeadingAnchor(to: self.OverviewTitle.leadingAnchor)
         
-        self.MonthlyAllocationTitleLabel.setTopAnchor(to: self.MonthlyAllocationView.topAnchor, withPadding: 2*UIValues.EdgePadding)
-        self.MonthlyAllocationTitleLabel.setLeadingAnchor(to: self.MonthlyAllocationView.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
-        
-        self.MonthlyAllocationAmountLabel.setBottomAnchor(to: self.MonthlyAllocationView.bottomAnchor, withPadding: -2*UIValues.EdgePadding)
-        self.MonthlyAllocationAmountLabel.setLeadingAnchor(to: self.MonthlyAllocationView.leadingAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.BudgetsCollectionView.setTopAnchor(to: self.BudgetsTitle.bottomAnchor, withPadding: UIValues.EdgePadding)
+        self.BudgetsCollectionView.setBottomAnchor(to: self.bottomAnchor, withPadding: -2*UIValues.EdgePadding)
+        self.BudgetsCollectionView.setLeadingAnchor(to: self.OverviewTitle.leadingAnchor)
+        self.BudgetsCollectionView.setTrailingAnchor(to: self.CurrentPotAmount.trailingAnchor)
     }
     
     required init?(coder aDecoder: NSCoder) {

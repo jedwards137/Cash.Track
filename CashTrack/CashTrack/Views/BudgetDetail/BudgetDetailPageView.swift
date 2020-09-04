@@ -14,7 +14,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "OVERVIEW"
         label.textColor = .black
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.TitleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -23,7 +23,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Current Pot"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +32,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "$0.00"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,7 +41,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Transactions This Month"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -50,7 +50,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Transactions This Month"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -59,7 +59,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Average Transaction Amount"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -68,7 +68,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Average Transaction Amount"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -77,7 +77,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "CASH FLOW"
         label.textColor = .black
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.TitleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -86,7 +86,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Allocated"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -95,7 +95,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "$0.00"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -104,7 +104,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "Spent"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -113,7 +113,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "$0.00"
         label.textColor = .lightGray
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.LabelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -132,7 +132,7 @@ class BudgetDetailPageView: UIViewBase {
         label.text = "TRANSACTIONS"
         label.textColor = .black
         label.backgroundColor = .clear
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: UIValues.TitleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

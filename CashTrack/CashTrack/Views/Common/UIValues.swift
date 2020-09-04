@@ -14,6 +14,10 @@ class UIValues {
     static var customRed =  UIColor(r: 229, g: 126, b: 100)
     
     static let EdgePadding: CGFloat = 10
+    
     static let FieldHeight: CGFloat = 60
-    static let ButtonHeight: CGFloat = 35
+    static let ButtonHeight: CGFloat = 45
+    
+    static let LabelSize: CGFloat = 18
+    static let TitleSize: CGFloat = 22
 }

@@ -97,14 +97,17 @@ class BudgetsViewController: UIViewControllerBase, UICollectionViewDelegateFlowL
     internal func didUpdateBudgets() {
         PageView.BudgetsCollectionView.reloadData()
         
-        let currentPot = DataStore.shared.getToalCurrentPotForAllBudgets()
-        PageView.PreviousPotAmountLabel.text = "$\(currentPot)"
+        let currentPotForAllBudgets = DataStore.shared.getToalCurrentPotForAllBudgets()
+        PageView.CurrentPotAmount.text = "$\(currentPotForAllBudgets)"
         
-        let totalSpent = DataStore.shared.getTotalSpentForAllBudgets()
-        PageView.MonthlySpentAmountLabel.text = "$\(totalSpent)"
+        let totalAllocatedForAllBudgets = DataStore.shared.getTotalAllocatedForAllBudgets()
+        PageView.AllocatedAmount.text = "$\(totalAllocatedForAllBudgets)"
         
-        let totalAllocated = DataStore.shared.getTotalAllocatedForAllBudgets()
-        PageView.MonthlyAllocationAmountLabel.text = "$\(totalAllocated)"
+        let totalSpentForAllBudgets = DataStore.shared.getTotalSpentForAllBudgets()
+        PageView.SpentAmount.text = "$\(totalSpentForAllBudgets)"
+        
+        let amountRemainingForAllBudgets = DataStore.shared.getTotalRemainingForAllBudgets()
+        PageView.NetAmount.text = "$\(amountRemainingForAllBudgets)"
     }
 }
 
