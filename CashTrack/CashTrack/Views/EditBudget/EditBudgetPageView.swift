@@ -69,7 +69,7 @@ class EditBudgetPageView: UIViewBase {
         self.MonthlyAllocationField.setLeadingAnchor(to: self.NameField.leadingAnchor)
         self.MonthlyAllocationField.setTrailingAnchor(to: self.centerXAnchor, withPadding: -UIValues.EdgePadding)
         
-        self.PreviousPotField.setTopAnchor(to: self.MonthlyAllocationField.topAnchor, withPadding: 2*UIValues.EdgePadding)
+        self.PreviousPotField.setTopAnchor(to: self.MonthlyAllocationField.topAnchor)
         self.PreviousPotField.setHeightAnchor(to: UIValues.FieldHeight)
         self.PreviousPotField.setLeadingAnchor(to: self.centerXAnchor, withPadding: UIValues.EdgePadding)
         self.PreviousPotField.setTrailingAnchor(to: self.NameField.trailingAnchor)

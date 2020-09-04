@@ -11,15 +11,19 @@ import UIKit
 class EditTransactionViewController: UIViewControllerBase {
     private var PageView = EditTransactionPageView()
     private var TransactionIndex: Int!
+    private var BudgetIndex: Int!
     
     override func setupNavBar() {
         super.setupNavBar()
         self.title = "Edit Budget"
     }
     
-    public func setInfoForTransaction(at index: Int) {
+    public func setInfoForTransaction(at index: Int, forBudgetIndex budgetIndex: Int) {
         self.TransactionIndex = index
-        let transaction = DataStore.shared.getTransaction(at: index)
+        self.BudgetIndex = budgetIndex
+        
+        let currentBudget = DataStore.shared.getBudget(at: budgetIndex)
+        let transaction = currentBudget.getTransaction(at: index)
         PageView.setInfoFor(transaction)
     }
     
@@ -50,7 +54,8 @@ class EditTransactionViewController: UIViewControllerBase {
     }
     
     @objc private func deleteTransactionAndPop() {
-        DataStore.shared.deleteTransaction(at: TransactionIndex)
+        let currentBudget = DataStore.shared.getBudget(at: self.BudgetIndex)
+        currentBudget.deleteTransaction(at: self.TransactionIndex)
 
         self.navigationController?.popViewController(animated: true)
     }

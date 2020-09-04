@@ -171,7 +171,7 @@ class BudgetDetailPageView: UIViewBase {
     
     public func setInfoFor(_ budget: Budget) {
         self.CurrentPotAmount.text = "$\(budget.CurrentPot)"
-        self.AverageTransactionAmount.text = "$\(budget.AverageTransactionAmount)"
+        self.AverageTransactionAmount.text = "$\(budget.MonthlyAverageTransactionAmount)"
         self.TransactionCountAmount.text = "\(budget.MonthlyNumberOfTransactions)"
 
         self.AllocatedAmount.text = "$\(budget.MonthlyAllocation)"

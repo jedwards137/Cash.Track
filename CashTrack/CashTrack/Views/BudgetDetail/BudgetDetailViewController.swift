@@ -53,8 +53,7 @@ class BudgetDetailViewController: UIViewControllerBase, UICollectionViewDelegate
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let currentBudget = DataStore.shared.getBudget(at: BudgetIndex)
-        let transactionsForBudget = DataStore.shared.getTransactionsForBudgetForCurrentMonth(budgetName: currentBudget.Name)
-        let transactionForCell = transactionsForBudget[indexPath.row]
+        let transactionForCell = currentBudget.getTransaction(at: indexPath.row)
         
         let cell = PageView.TransactionsCollectionView.dequeueReusableCell(withReuseIdentifier: TransactionCellId, for: indexPath) as! TransactionCell
         cell.setTransactionInfoForCell(with: transactionForCell)
@@ -63,7 +62,7 @@ class BudgetDetailViewController: UIViewControllerBase, UICollectionViewDelegate
     
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let editTransactionViewController: EditTransactionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editTransactionVC") as! EditTransactionViewController
-        editTransactionViewController.setInfoForTransaction(at: indexPath.row)
+        editTransactionViewController.setInfoForTransaction(at: indexPath.row, forBudgetIndex: self.BudgetIndex)
         self.navigationController?.pushViewController(editTransactionViewController, animated: true)
     }
     

@@ -15,9 +15,9 @@ public class Budget {
     private(set) var TransactionList: [Transaction]
     
     var MonthlyAmountSpent: Double {
-        let transactionsForThisBudget = DataStore.shared.getTransactionsForBudgetForCurrentMonth(budgetName: self.Name)
-        let amountSpent = transactionsForThisBudget.sum({ $0.Amount })
-        return amountSpent
+        let transactionsForCurrentMonth = self.TransactionList.filter({ $0.Date.getComponents()["month"] == DataStore.shared.CurrentMonth })
+        let monthlyAmountSpent = transactionsForCurrentMonth.sum({ $0.Amount })
+        return monthlyAmountSpent
     }
     var MonthlyAmountRemaining: Double {
         let amountRemaining = self.MonthlyAllocation - self.MonthlyAmountSpent
@@ -28,15 +28,14 @@ public class Budget {
         return percentOfMonthlyAllocationSpent
     }
     var CurrentPot: Double {
-        let currentPot = self.PreviousPot + (self.MonthlyAllocation - self.MonthlyAmountSpent)
+        let currentPot = self.PreviousPot + self.MonthlyAmountRemaining
         return currentPot
     }
     var MonthlyNumberOfTransactions: Int {
-        let transactionsForBudgetForCurrentMonth = DataStore.shared.getTransactionsForBudgetForCurrentMonth(budgetName: self.Name)
-        let monthlyNumberOfTransactions = transactionsForBudgetForCurrentMonth.count
+        let monthlyNumberOfTransactions = self.TransactionList.count
         return monthlyNumberOfTransactions
     }
-    var AverageTransactionAmount: Double {
+    var MonthlyAverageTransactionAmount: Double {
         let averageTransactionAmount = self.MonthlyAmountSpent / Double(MonthlyNumberOfTransactions)
         let avergageTransactionAmountIsValid = averageTransactionAmount > 0 ? averageTransactionAmount : 0
         return avergageTransactionAmountIsValid
@@ -46,23 +45,30 @@ public class Budget {
         self.Name = name
         self.MonthlyAllocation = monthlyAllocation
         self.PreviousPot = previousPot
-        //self.TransactionList = []
+        self.TransactionList = []
     }
     
     public func reconcileAmounts() {
-        let currentMonthRemainingAmount = self.MonthlyAllocation - self.MonthlyAmountSpent
-        self.PreviousPot += currentMonthRemainingAmount
+        let remainingAmountForCurrentMonth = self.MonthlyAllocation - self.MonthlyAmountSpent
+        self.PreviousPot += remainingAmountForCurrentMonth
     }
     
-    public func updateName(with newName: String) {
+    public func updateValuesWith(_ newName: String, _ newMonthlyAllocation: Double, _ newPreviousPot: Double) {
         self.Name = newName
-    }
-    
-    public func updateMonthlyAllocation(with newMonthlyAllocation: Double) {
         self.MonthlyAllocation = newMonthlyAllocation
+        self.PreviousPot = newPreviousPot
     }
     
-    public func updatePreviousPot(with newPreviousPot: Double) {
-        self.PreviousPot = newPreviousPot
+    public func addTransaction(_ transaction: Transaction) {
+        self.TransactionList.append(transaction)
+    }
+    
+    public func getTransaction(at index: Int) -> Transaction {
+        let transactionAtIndex = self.TransactionList[index]
+        return transactionAtIndex
+    }
+    
+    public func deleteTransaction(at index: Int) {
+        self.TransactionList.remove(at: index)
     }
 }

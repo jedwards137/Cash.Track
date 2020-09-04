@@ -44,7 +44,7 @@ class EditBudgetViewController: UIViewControllerBase {
         let monthlyAllocation = PageView.MonthlyAllocationField.getDouble()
         let previousPot = PageView.PreviousPotField.getDouble()
         
-        DataStore.shared.updateBudget(at: self.BudgetIndex, name: name, monthlyAllocation: monthlyAllocation, previousPot: previousPot)
+        DataStore.shared.updateBudget(at: self.BudgetIndex, newName: name, newMonthlyAllocation: monthlyAllocation, newPreviousPot: previousPot)
         
         self.navigationController?.popViewController(animated: true)
     }
